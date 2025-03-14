@@ -1,0 +1,12 @@
+.heading {
+	&:not(:last-child) {
+		margin-bottom: em(35, 72);
+	}
+
+	font-weight: var(--bold);
+
+	// .heading--centered
+	&--centered {
+		text-align: center;
+	}
+}

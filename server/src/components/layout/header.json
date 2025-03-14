@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_layout_headers",
+  "info": {
+    "displayName": "header",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "navigation": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.link",
+      "required": false
+    },
+    "number": {
+      "type": "string",
+      "default": "+7 (900) 232 32-32"
+    }
+  }
+}

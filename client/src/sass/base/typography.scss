@@ -1,0 +1,146 @@
+// Заголовки с адаптивным font-size
+h1,
+.h1 {
+	font-size: rem(72); // Размер для h1 на больших экранах
+
+	@media (max-width: $pc) {
+		// ПК, ноутбуки
+		font-size: rem(42);
+	}
+
+	@media (max-width: $tablet) {
+		// Планшеты и некоторые телефоны в горизонтальном положении
+		font-size: rem(36);
+	}
+
+	@media (max-width: $mobile) {
+		// Телефоны L
+		font-size: rem(32);
+	}
+
+	@media (max-width: $mobileSmall) {
+		// Телефоны S
+		font-size: rem(28);
+	}
+}
+
+h2,
+.h2 {
+	font-size: rem(40); // Размер для h2 на больших экранах
+
+	@media (max-width: $pc) {
+		font-size: rem(36);
+	}
+
+	@media (max-width: $tablet) {
+		font-size: rem(32);
+	}
+
+	@media (max-width: $mobile) {
+		font-size: rem(28);
+	}
+
+	@media (max-width: $mobileSmall) {
+		font-size: rem(24);
+	}
+}
+
+h3,
+.h3 {
+	font-size: rem(32); // Размер для h3 на больших экранах
+
+	@media (max-width: $pc) {
+		font-size: rem(28);
+	}
+
+	@media (max-width: $tablet) {
+		font-size: rem(24);
+	}
+
+	@media (max-width: $mobile) {
+		font-size: rem(20);
+	}
+
+	@media (max-width: $mobileSmall) {
+		font-size: rem(18);
+	}
+}
+
+h4,
+.h4 {
+	font-size: rem(28); // Размер для h4 на больших экранах
+
+	@media (max-width: $pc) {
+		font-size: rem(24);
+	}
+
+	@media (max-width: $tablet) {
+		font-size: rem(22);
+	}
+
+	@media (max-width: $mobile) {
+		font-size: rem(20);
+	}
+
+	@media (max-width: $mobileSmall) {
+		font-size: rem(18);
+	}
+}
+
+h5,
+.h5 {
+	font-size: rem(24); // Размер для h5 на больших экранах
+
+	@media (max-width: $pc) {
+		font-size: rem(22);
+	}
+
+	@media (max-width: $tablet) {
+		font-size: rem(20);
+	}
+
+	@media (max-width: $mobile) {
+		font-size: rem(18);
+	}
+
+	// @media (max-width: $mobileSmall) {
+	// 	font-size: rem(16);
+	// }
+}
+
+h6,
+.h6 {
+	font-size: rem(20); // Размер для h6 на больших экранах
+
+	@media (max-width: $pc) {
+		font-size: rem(18);
+	}
+
+	@media (max-width: $tablet) {
+		font-size: rem(16);
+	}
+
+	// @media (max-width: $mobile) {
+	// 	font-size: rem(14);
+	// }
+
+	// @media (max-width: $mobileSmall) {
+	// 	font-size: rem(12);
+	// }
+}
+
+p,
+.p {
+	font-size: rem(24); // Размер для p на больших экранах
+	line-height: 1.5;
+
+	@media (max-width: $pc) {
+		font-size: rem(18);
+	}
+
+	@media (max-width: $tablet) {
+		font-size: rem(16);
+	}
+}
+
+.content-field {}

@@ -1,0 +1,26 @@
+.loaderWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh; // Занимает всю высоту экрана
+	background-color: #f8f9fa;
+}
+
+.loader {
+	width: 50px;
+	height: 50px;
+	border: 5px solid rgba(0, 0, 0, 0.1);
+	border-top-color: #FEB302;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}

@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "HomePage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.paragraph-with-image",
+        "blocks.hero-section",
+        "blocks.heading",
+        "blocks.paragraph"
+      ]
+    }
+  }
+}

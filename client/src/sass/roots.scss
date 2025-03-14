@@ -1,0 +1,75 @@
+:root {
+	--main-color: #FFFFFF;
+	--secondary-color: rgba(83, 141, 255, 0.05);
+	--accent-color: #FEB302;
+	--tertiary-color: #DA5C5C;
+
+	--main-font-color: #343030;
+	--secondary-font-color: #FFFFFF;
+
+	--further-font-color: rgba(64, 36, 149, 0.35);
+	--hover-font-color: #FEB302;
+
+	--description-font-color: #605F5F;
+
+	--btn-color: #FEB302;
+	--btn-hover-color: rgba(254, 179, 2, 0.70);
+
+	--btn-secondary-color: rgba(254, 179, 2, 0.45);
+	--btn-secondary-hover-color: rgba(254, 179, 2, 0.75);
+
+
+	--ff: "Roboto", sans-serif, Arial, -apple-system, "BlinkMacSystemFont", sans-serif, Helvetica, sans-serif;
+
+	--hairline: 100;
+	--thin: 200;
+	--light: 300;
+	--regular: 400;
+	--medium: 500;
+	--semi-bold: 600;
+	--bold: 700;
+	--extra-bold: 800;
+	--black: 900;
+
+	--ui-index--1: -1;
+	--ui-index-1: 1;
+	--ui-index-2: 2;
+	--ui-index-3: 3;
+	--ui-index-4: 4;
+	--ui-index-5: 5;
+	--ui-index-6: 6;
+	--ui-index-7: 7;
+	--ui-index-8: 8;
+	--ui-index-9: 9;
+
+	--main-section-paddings: 70px;
+
+	@media (max-width:$tablet) {
+		--main-section-paddings: 50px;
+	}
+
+	@media (max-width:$mobile) {
+		--main-section-paddings: 40px;
+	}
+
+	@media (max-width:$mobileSmall) {
+		--main-section-paddings: 30px;
+	}
+
+	// чтобы слепить 2 секции
+	// margin-top: calc(var(--main-section-paddings) * -2)
+}
+
+// TODO поменять
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		color-scheme: dark;
+	}
+}

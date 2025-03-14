@@ -1,0 +1,11 @@
+.auth{
+	// .auth__link
+	&__link{
+		margin-top: em(24,24);
+		text-align: center;
+
+		a{
+			text-decoration: underline;
+		}
+	}
+}

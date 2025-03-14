@@ -1,0 +1,62 @@
+.product-page {
+
+	// .product-page__container
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	// .product-page__wrap
+	&__wrap {
+		display: flex;
+		gap: 100px;
+	}
+
+	// .product-page__controls
+	&__controls {
+		display: flex;
+		gap: 40px;
+	}
+
+	// .product-page__image
+	&__image {
+		flex: 0 0 490px;
+
+		min-height: 500px;
+		max-height: 500px;
+		border-radius: 24px;
+		overflow: hidden;
+	}
+
+	// .product-page__content
+	&__content {
+		flex: 1 1 auto;
+
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		// .product-page__content-prices
+		&-prices {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+
+			span:first-child {
+				font-weight: var(--bold);
+				color: var(--tertiary-color); // Красный цвет для новой цены
+			}
+
+			span:nth-child(2) {
+				font-weight: var(--bold);
+				text-decoration: line-through;
+				color: rgba(54, 54, 54, 0.25);
+			}
+
+			&:not(:last-child) {
+				margin-bottom: em(30, 16);
+			}
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_elements_buttons",
+  "info": {
+    "displayName": "button"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string",
+      "required": true
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "required": true
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "required": true
+    }
+  }
+}

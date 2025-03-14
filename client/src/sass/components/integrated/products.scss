@@ -1,0 +1,39 @@
+.products {
+	padding: calc(var(--main-section-paddings) * 1.5) 0;
+
+	// .products__container
+	&__container {}
+
+	// .products__tabs
+	&__tabs {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-flow: row wrap;
+		gap: rem(20) rem(32);
+	}
+
+	// .products__heading
+	&__heading {
+		&:not(:last-child) {
+			margin-bottom: em(75, 72);
+		}
+	}
+
+	// .products__list
+	&__list {
+		&:not(:first-child) {
+			margin-top: rem(142);
+		}
+
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 53px 27px;
+	}
+
+	// .products__not-found
+	&__not-found {
+		font-size: rem(30);
+		color: red;
+	}
+}
