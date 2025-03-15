@@ -24,6 +24,7 @@
 ![alt text](./imgs/5.png)
 ![alt text](./imgs/6.png)
 ![alt text](./imgs/7.png)
+![alt text](./imgs/8.png)
 
 Vyacheslav Tchekasin
 best-login-mail@yandex.ru
