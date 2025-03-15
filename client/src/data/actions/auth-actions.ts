@@ -2,7 +2,7 @@
 
 import { getStrapiURL } from '@/utils/get-strapi-url';
 
-const BASE_URL = getStrapiURL(); // Получаем базовый URL API
+const BASE_URL = getStrapiURL();
 
 interface SignInData {
 	identifier: string;
