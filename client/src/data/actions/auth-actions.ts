@@ -1,60 +1,56 @@
 'use client';
 
-import { getStrapiURL } from '@/utils/get-strapi-url';
-
-const BASE_URL = getStrapiURL();
-
 interface SignInData {
 	identifier: string;
 	password: string;
 }
 
-export async function signIn(data: SignInData) {
-	try {
-		const response = await fetch(`${BASE_URL}auth/local`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		});
-
-		if (!response.ok) {
-			const errorData = await response.text(); // Меняем на text() для отладки
-			console.error('Ошибка сервера:', errorData);
-			throw new Error('Ошибка при входе');
-		}
-
-		return await response.json();
-	} catch (error) {
-		console.error('Ошибка при входе:', error);
-		throw error;
-	}
-}
-
-export async function signUp(data: {
+interface SignUpData {
 	username: string;
 	email: string;
 	password: string;
-}) {
+}
+
+export async function signIn(data: SignInData) {
 	try {
-		const response = await fetch(`${BASE_URL}auth/local/register`, {
+		const response = await fetch('/api/auth/signin', {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data),
+			credentials: 'include', // Позволяет передавать куки
 		});
 
+		const responseData = await response.json();
+
 		if (!response.ok) {
-			const errorText = await response.text();
-			console.error('Ошибка сервера:', errorText);
-			throw new Error('Ошибка регистрации: ' + errorText);
+			return { error: responseData?.error || 'Ошибка при входе' };
 		}
 
-		return await response.json();
+		return { data: responseData };
+	} catch (error) {
+		console.error('Ошибка при входе:', error);
+		return { error: 'Ошибка сервера. Попробуйте позже.' };
+	}
+}
+
+export async function signUp(data: SignUpData) {
+	try {
+		const response = await fetch('/api/auth/signup', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(data),
+			credentials: 'include', // Позволяет передавать куки
+		});
+
+		const responseData = await response.json();
+
+		if (!response.ok) {
+			return { error: responseData?.error || 'Ошибка при регистрации' };
+		}
+
+		return { data: responseData };
 	} catch (error) {
 		console.error('Ошибка при регистрации:', error);
-		throw error;
+		return { error: 'Ошибка сервера. Попробуйте позже.' };
 	}
 }

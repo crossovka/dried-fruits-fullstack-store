@@ -1,11 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
 import { signUp } from '@/data/actions/auth-actions';
 import { StrapiErrors } from '../strapi-errors';
 
@@ -40,10 +42,14 @@ const SignUpForm = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm<SignUpFormData>({
 		resolver: yupResolver(schema),
 	});
 
+	const router = useRouter();
+
+	const [isLoading, setIsLoading] = useState(false);
 	const [strapiError, setStrapiError] = useState<{
 		message: string;
 		name: string;
@@ -51,62 +57,30 @@ const SignUpForm = () => {
 	} | null>(null);
 
 	const onSubmit = async (data: SignUpFormData) => {
-		setStrapiError(null); // Reset the error before making the request
+		setIsLoading(true);
+		setStrapiError(null);
 
-		try {
-			const response = await signUp({
-				username: data.username,
-				email: data.email,
-				password: data.password,
-			});
-			console.log('Registration successful:', response);
+		const response = await signUp({
+			username: data.username,
+			email: data.email,
+			password: data.password,
+		});
 
-			// Show success toast notification
-			toast.success('Registration successful!', {
-				position: 'top-right',
-				autoClose: 3000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-			});
-		} catch (error: any) {
-			console.error('Registration error:', error);
-			
+		setIsLoading(false);
 
-			// Check if the error has the expected structure
-			if (error?.response?.data?.error) {
-				const { message, name, status } = error.response.data.error;
-				setStrapiError({ message, name, status });
-
-				// Show error toast notification with server message
-				toast.error(`Registration error: ${message}`, {
-					position: 'top-right',
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-				});
-			} else {
-				// For any other unknown errors
-				setStrapiError({
-					message: 'An unknown error occurred.',
-					name: 'UnknownError',
-					status: null,
-				});
-
-				// Show generic error toast notification
-				toast.error('An unknown error occurred. Please try again later.', {
-					position: 'top-right',
-					autoClose: 3000,
-					hideProgressBar: false,
-					closeOnClick: true,
-					pauseOnHover: true,
-					draggable: true,
-				});
-			}
+		if (response.error) {
+			setStrapiError(response.error);
+			toast.error(response.error, { position: 'top-right', autoClose: 3000 });
+			return;
 		}
+
+		toast.success('Регистрация прошла успешно!', {
+			position: 'top-right',
+			autoClose: 3000,
+		});
+
+		reset();
+		router.push('/profile');
 	};
 
 	return (
@@ -144,8 +118,8 @@ const SignUpForm = () => {
 			{/* Выводим ошибку Strapi, если она есть */}
 			{strapiError && <StrapiErrors error={strapiError} />}
 
-			<button type="submit" className="btn btn--primary">
-				Зарегистрироваться
+			<button type="submit" className="btn btn--primary" disabled={isLoading}>
+				{isLoading ? 'Регестрация...' : 'Зарегистрироваться'}
 			</button>
 		</form>
 	);

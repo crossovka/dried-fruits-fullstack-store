@@ -21,12 +21,13 @@
 	// .products-page-main__tabs
 	&__tabs {
 		@media (min-width:$pc) {
+			flex: 1 0 400px;
 			display: flex;
 			flex-direction: column;
 			gap: rem(14);
 			height: fit-content;
 
-			padding: 28px 100px 43px 33px;
+			padding: 28px 33px 43px 33px;
 			border-radius: 25px;
 			background: var(--secondary-color);
 			

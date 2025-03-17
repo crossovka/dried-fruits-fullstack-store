@@ -117,6 +117,10 @@ export function Header({ data }: HeaderProps) {
 						<span>{totalCount}</span>
 					</Link>
 
+					<Link href="/profile" className='header-right__cart-btn'>
+						<span>Профиль</span>
+					</Link>
+
 					{/* Бургер-меню */}
 					<button
 						className="icon-menu"

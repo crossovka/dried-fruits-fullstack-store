@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { signIn } from '@/data/actions/auth-actions';
 import { StrapiErrors } from '../strapi-errors';
@@ -28,6 +30,10 @@ const schema = yup
 	.required();
 
 const SignInForm = () => {
+	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(false);
+	const [strapiError, setStrapiError] = useState<string | null>(null);
+
 	const {
 		register,
 		handleSubmit,
@@ -37,45 +43,29 @@ const SignInForm = () => {
 		resolver: yupResolver(schema),
 	});
 
-	const [strapiError, setStrapiError] = useState<string | null>(null);
-
 	const onSubmit = async (data: SignInFormData) => {
-		setStrapiError(null); // Сбрасываем ошибку перед запросом
+		setIsLoading(true);
+		setStrapiError(null);
 
-		try {
-			const response = await signIn({
-				identifier: data.email,
-				password: data.password,
-			});
+		const response = await signIn({
+			identifier: data.email,
+			password: data.password,
+		});
 
-			// Показываем уведомление об успешном входе
-			toast.success('Вход выполнен успешно!', {
-				position: 'top-right',
-				autoClose: 3000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-			});
-
-			console.log('Успешный вход:', response);
-			reset(); // Очищаем форму после успешного входа
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		} catch (error: any) {
-			console.error('Ошибка входа:', error);
-
-			if (error?.response?.data?.error?.message) {
-				setStrapiError(error.response.data.error.message);
-			} else {
-				setStrapiError('Произошла неизвестная ошибка.');
-			}
-
-			// Показываем уведомление об ошибке
-			toast.error('Ошибка входа. Проверьте данные и попробуйте снова.', {
-				position: 'top-right',
-				autoClose: 3000,
-			});
+		setIsLoading(false);
+		if (response.error) {
+			setStrapiError(response.error);
+			toast.error(response.error, { position: 'top-right', autoClose: 3000 });
+			return;
 		}
+
+		toast.success('Вход выполнен успешно!', {
+			position: 'top-right',
+			autoClose: 3000,
+		});
+
+		reset();
+		router.push('/profile');
 	};
 
 	return (
@@ -92,11 +82,18 @@ const SignInForm = () => {
 				{errors.password && <p className="error">{errors.password.message}</p>}
 			</div>
 
-			{/* Выводим ошибки Strapi */}
-			{strapiError && <StrapiErrors message={strapiError} />}
+			{strapiError && (
+				<StrapiErrors
+					error={{
+						message: strapiError,
+						name: 'ValidationError',
+						status: '400',
+					}}
+				/>
+			)}
 
-			<button type="submit" className="btn btn--primary">
-				Войти
+			<button type="submit" className="btn btn--primary" disabled={isLoading}>
+				{isLoading ? 'Вход...' : 'Войти'}
 			</button>
 		</form>
 	);
