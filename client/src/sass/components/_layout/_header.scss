@@ -113,7 +113,7 @@
 }
 
 .header-left {
-	flex: 1 1 auto;
+	flex: 2 1 auto;
 	display: flex;
 	gap: 27px;
 	align-items: center;
@@ -130,6 +130,7 @@
 
 	&__nav {
 		display: flex;
+		flex-flow: row wrap;
 		align-items: center;
 		gap: rem(12) rem(24);
 
@@ -200,9 +201,11 @@
 }
 
 .header-right {
+	flex: 1 0 auto;
 	display: flex;
 	align-items: center;
-	gap: 40px;
+	justify-content: flex-end;
+	gap: 24px;
 
 	@media (max-width:$tablet) {
 		gap: 20px;
@@ -232,6 +235,8 @@
 		}
 
 		&-link {
+			text-wrap: nowrap;
+
 			@media (max-width:$mobile) {
 				display: none;
 			}
@@ -275,6 +280,20 @@
 
 			span:nth-child(2) {
 				padding: 4px 8px;
+			}
+		}
+	}
+
+	// .header-right__profile-btn
+	&__profile-btn {
+		flex: 0 0 30px;
+		height: 30px;
+
+		transition: color 0.3s ease;
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: var(--btn-hover-color);
 			}
 		}
 	}

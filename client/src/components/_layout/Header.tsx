@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+
 import Link from 'next/link';
 
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber';
@@ -9,6 +10,7 @@ import { useAppSelector } from '@/store/store';
 import { selectCartItems } from '@/store/cart/cart.selectors';
 
 import { StrapiImage } from '../ui/StrapiImage';
+import ProfileIcon from '@/components/icons/ProfileIcon';
 
 import type { ButtonProps, ImageProps, LinkProps } from '@/types/types';
 import { CartItem } from '@/store/cart/cart.types';
@@ -112,13 +114,16 @@ export function Header({ data }: HeaderProps) {
 						<span className="header-right__info-item-link">{number}</span>
 					</a>
 
-					<Link href="/cart" className='header-right__cart-btn'>
-						<span>Корзина</span>
-						<span>{totalCount}</span>
+					<Link
+						href="/profile"
+						className="header-right__profile-btn -ibg_contain"
+					>
+						<ProfileIcon />
 					</Link>
 
-					<Link href="/profile" className='header-right__cart-btn'>
-						<span>Профиль</span>
+					<Link href="/cart" className="header-right__cart-btn">
+						<span>Корзина</span>
+						<span>{totalCount}</span>
 					</Link>
 
 					{/* Бургер-меню */}
