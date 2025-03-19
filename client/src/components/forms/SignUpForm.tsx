@@ -84,7 +84,7 @@ const SignUpForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="form">
+		<form onSubmit={handleSubmit(onSubmit)} className="form auth-form">
 			<div className="form-group">
 				<label htmlFor="username">Имя пользователя</label>
 				<input id="username" type="text" {...register('username')} />

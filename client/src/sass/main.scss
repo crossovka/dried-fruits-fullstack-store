@@ -167,12 +167,15 @@ body {
 @import "components/blocks/_paragraph";
 @import "components/blocks/_paragraph-with-image";
 @import "components/blocks/_image-block.scss";
+@import "components/blocks/_contacts.scss";
 
 // integrated
 @import "components/integrated/products.scss";
 
 // forms
 @import "components/forms/forms.scss";
+@import "components/forms/auth-forms.scss";
+@import "components/forms/contact-form.scss";
 
 // pages
 @import "pages/products-page.scss";

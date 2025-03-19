@@ -489,6 +489,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'blocks.heading',
         'blocks.paragraph',
         'blocks.image',
+        'blocks.contacts',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

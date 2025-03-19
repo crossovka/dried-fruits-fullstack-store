@@ -1,5 +1,20 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksContacts extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_contacts';
+  info: {
+    description: '';
+    displayName: 'Contacts';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'files' | 'images'> &
+      Schema.Attribute.Required;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'\u0421\u0432\u044F\u0437\u0430\u0442\u044C\u0441\u044F'>;
+  };
+}
+
 export interface BlocksHeading extends Struct.ComponentSchema {
   collectionName: 'components_blocks_headings';
   info: {
@@ -113,6 +128,7 @@ export interface LayoutHeader extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.contacts': BlocksContacts;
       'blocks.heading': BlocksHeading;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.image': BlocksImage;

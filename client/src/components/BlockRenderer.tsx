@@ -2,14 +2,17 @@ import type {
 	Block,
 	HeadingProps,
 	HeroSectionProps,
+	ImageBlockProps,
 	ParagraphProps,
 	ParagraphWithImageProps,
+	ContactsProps
 } from '@/types/types';
 import { HeroSection } from '@/components/blocks/HeroSection';
 import Heading from './blocks/Heading';
 import { Paragraph } from './blocks/Paragraph';
 import { ParagraphWithImage } from './blocks/ParagraphWithImage';
 import ImageBlock from './blocks/ImageBlock';
+import Contacts from './blocks/Contacts/Contacts';
 
 function blockRenderer(block: Block, index: number) {
 	const uniqueKey = `${block.__component}-${block.id || index}`; // Безопасный ключ
@@ -30,6 +33,8 @@ function blockRenderer(block: Block, index: number) {
 			return <ImageBlock {...(block as ImageBlockProps)} key={uniqueKey} />;
 		case 'blocks.paragraph':
 			return <Paragraph {...(block as ParagraphProps)} key={uniqueKey} />;
+		case 'blocks.contacts':
+			return <Contacts {...(block as ContactsProps)} key={uniqueKey} />;
 		default:
 			console.warn(`Неизвестный блок: ${block.__component}`);
 			return null;

@@ -17,6 +17,7 @@ type ComponentType =
 	| 'blocks.full-image'
 	| 'blocks.subscribe'
 	| 'blocks.image'
+	| 'blocks.contacts'
 	| 'layout.header';
 
 interface Base<
@@ -85,6 +86,10 @@ export interface ParagraphProps extends Base<'blocks.paragraph'> {
 }
 
 export interface ImageBlockProps extends Base<'blocks.image'> {
+	image: ImageProps;
+}
+export interface ContactsProps extends Base<'blocks.contacts'> {
+	title: string;
 	image: ImageProps;
 }
 //========================================================================================================================================================

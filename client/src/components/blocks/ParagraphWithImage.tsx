@@ -27,7 +27,7 @@ export function ParagraphWithImage({
 						alt={image.alternativeText || 'No alternative text provided'}
 						fill
 						className="text-image__image"
-						data-fancybox="gallery" // Add data-fancybox here
+						data-fancybox="" // Add data-fancybox here
 					/>
 				</Fancybox>
 			</div>

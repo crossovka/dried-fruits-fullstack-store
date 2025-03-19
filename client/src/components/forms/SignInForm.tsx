@@ -69,7 +69,7 @@ const SignInForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="form">
+		<form onSubmit={handleSubmit(onSubmit)} className="form auth-form">
 			<div className="form-group">
 				<label htmlFor="email">Email</label>
 				<input id="email" type="email" {...register('email')} />

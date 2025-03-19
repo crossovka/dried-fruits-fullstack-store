@@ -31,7 +31,8 @@
         "blocks.hero-section",
         "blocks.heading",
         "blocks.paragraph",
-        "blocks.image"
+        "blocks.image",
+        "blocks.contacts"
       ]
     }
   }
