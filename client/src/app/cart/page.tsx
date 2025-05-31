@@ -1,6 +1,8 @@
 'use client';
 
+import React, { useState } from 'react';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import {
@@ -10,7 +12,6 @@ import {
 import { cartActions } from '@/store/cart/cart.slice';
 
 import { StrapiImage } from '@/components/ui/StrapiImage';
-
 import { CartItem } from '@/store/cart/cart.types';
 
 export default function CartPage() {
@@ -18,19 +19,15 @@ export default function CartPage() {
 	const cartItems = useAppSelector(selectCartItems);
 	const totalPrice = useAppSelector(selectCartTotalPrice);
 
-	// Увеличение количества товара
+	const [address, setAddress] = useState('');
+	const [loading, setLoading] = useState(false);
+
 	const handleIncrease = (item: CartItem) => {
 		dispatch(cartActions.addItem(item));
 	};
-
-	// Уменьшение количества товара с подтверждением (если 1 шт. - удаляется из корзины)
 	const handleDecrease = (item: CartItem) => {
 		if (item.quantity === 1) {
-			const confirmRemove = window.confirm(
-				'Вы уверены, что хотите удалить этот товар из корзины?'
-			);
-
-			if (confirmRemove) {
+			if (window.confirm('Удалить товар из корзины?')) {
 				dispatch(
 					cartActions.removeItem({
 						id: item.id,
@@ -47,14 +44,8 @@ export default function CartPage() {
 			);
 		}
 	};
-
-	// Удаление товара из корзины с подтверждением
 	const handleRemoveItem = (item: CartItem) => {
-		const confirmRemove = window.confirm(
-			'Вы уверены, что хотите удалить этот товар из корзины?'
-		);
-
-		if (confirmRemove) {
+		if (window.confirm('Удалить товар из корзины?')) {
 			dispatch(
 				cartActions.removeItem({
 					id: item.id,
@@ -63,10 +54,56 @@ export default function CartPage() {
 			);
 		}
 	};
-
-	// Очистка всей корзины
 	const handleClearCart = () => {
 		dispatch(cartActions.clearCart());
+	};
+
+	const handlePlaceOrder = async () => {
+		if (!address.trim()) {
+			toast.error('Введите адрес доставки');
+			return;
+		}
+		if (cartItems.length === 0) {
+			toast.error('Корзина пуста');
+			return;
+		}
+
+		setLoading(true);
+
+		try {
+			const itemsForOrder = cartItems.map((item) => ({
+				productId: item.id,
+				quantity: item.quantity,
+				price: item.price,
+				selectedWeight: item.selectedWeight,
+				title: item.title,
+			}));
+
+			const response = await fetch('/api/orders/create', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					items: itemsForOrder,
+					totalPrice,
+					address,
+				}),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				toast.error(data.error || 'Ошибка при оформлении заказа');
+			} else {
+				toast.success('Заказ успешно оформлен');
+				dispatch(cartActions.clearCart());
+				setAddress('');
+			}
+		} catch (error) {
+			console.error('Ошибка оформления заказа', error);
+			toast.error('Ошибка сервера. Попробуйте позже.');
+		} finally {
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -79,9 +116,7 @@ export default function CartPage() {
 				<>
 					<ul>
 						{cartItems.map((item) => {
-							// Создаем уникальный ключ на основе id и selectedWeight
 							const uniqueKey = `${item.id}-${item.selectedWeight?.value}`;
-
 							return (
 								<li key={uniqueKey} className="cart-item">
 									<Link
@@ -90,18 +125,13 @@ export default function CartPage() {
 									>
 										<StrapiImage
 											src={item.image.url}
-											alt={
-												item.image.alternativeText ||
-												'No alternative text provided'
-											}
+											alt={item.image.alternativeText || 'No alt'}
 											fill
 										/>
 									</Link>
 									<div className="cart-item__info">
 										<h3>{item.title}</h3>
 										<p>Цена: {item.price} ₽</p>
-
-										{/* Отображаем выбранный вес */}
 										<p>
 											Вес: {item.selectedWeight?.value}{' '}
 											{item.selectedWeight?.unit}
@@ -119,7 +149,29 @@ export default function CartPage() {
 					</ul>
 					<div className="cart-footer">
 						<h2>Общая сумма: {totalPrice} ₽</h2>
-						<button onClick={handleClearCart}>Очистить корзину</button>
+
+						<label htmlFor="address">Адрес доставки:</label>
+						<input
+							id="address"
+							type="text"
+							value={address}
+							onChange={(e) => setAddress(e.target.value)}
+							placeholder="Введите адрес доставки"
+							disabled={loading}
+							style={{ width: '100%', marginBottom: '1rem' }}
+						/>
+
+						<button
+							onClick={handlePlaceOrder}
+							disabled={loading}
+							style={{ marginRight: '1rem' }}
+						>
+							{loading ? 'Оформление...' : 'Оформить заказ'}
+						</button>
+
+						<button onClick={handleClearCart} disabled={loading}>
+							Очистить корзину
+						</button>
 					</div>
 				</>
 			)}
