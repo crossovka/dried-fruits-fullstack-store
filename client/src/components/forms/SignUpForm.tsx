@@ -116,7 +116,7 @@ const SignUpForm = () => {
 			</div>
 
 			{/* Выводим ошибку Strapi, если она есть */}
-			{strapiError && <StrapiErrors error={strapiError} />}
+			{/* {strapiError && <StrapiErrors error={strapiError} />} */}
 
 			<button type="submit" className="btn btn--primary" disabled={isLoading}>
 				{isLoading ? 'Регестрация...' : 'Зарегистрироваться'}

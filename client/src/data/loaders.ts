@@ -1,7 +1,10 @@
 import qs from 'qs';
+import { cache } from 'react';
+
 import { fetchAPI } from '@/utils/fetch-api';
 import { getStrapiURL } from '@/utils/get-strapi-url';
 import { Category, PaginationMeta, Product } from '@/types/types';
+
 
 const BASE_URL = getStrapiURL();
 
@@ -17,7 +20,26 @@ const homePageQuery = qs.stringify(
 	{ encode: false } // Отключаем кодирование URL
 );
 
-export async function getHomePage() {
+// export async function getHomePage() {
+// 	const path = '/api/home-page';
+// 	const url = new URL(path, BASE_URL);
+// 	url.search = homePageQuery;
+
+// 	try {
+// 		const response = await fetchAPI(url.href, {
+// 			method: 'GET',
+// 			next: { revalidate: 60 }, // Кэширование на 60 секунд
+// 		});
+
+// 		console.log('Home page response:', response);
+// 		return response;
+// 	} catch (error) {
+// 		console.error('Error fetching home page data:', error);
+// 		throw error;
+// 	}
+// }
+
+export const getCachedHomePage = cache(async function getCachedHomePage() {
 	const path = '/api/home-page';
 	const url = new URL(path, BASE_URL);
 	url.search = homePageQuery;
@@ -34,7 +56,7 @@ export async function getHomePage() {
 		console.error('Error fetching home page data:', error);
 		throw error;
 	}
-}
+});
 
 const pageBySlugQuery = (slug: string) =>
 	qs.stringify(

@@ -1,10 +1,11 @@
 import { BlockRenderer } from '@/components/BlockRenderer';
 import ProductsList from '@/components/integrated/ProductsList';
-import { getHomePage, getCategories, getProducts } from '@/data/loaders';
+import { getCachedHomePage, getCategories, getProducts } from '@/data/loaders';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 async function loader() {
-	const data = await getHomePage();
+	const data = await getCachedHomePage();
 	if (!data) notFound();
 
 	const categories = await getCategories();
@@ -21,13 +22,19 @@ async function loader() {
 	return { ...data.data, categories, initialProducts };
 }
 
+export async function generateMetadata(): Promise<Metadata> {
+	const { title, description } = await getCachedHomePage();
+	return {
+		title,
+		description,
+	};
+}
+
 export default async function HomeRoute() {
 	const { blocks, categories, initialProducts } = await loader();
 
 	return (
 		<>
-			{/* {data.title}
-			{data.description} */}
 			<BlockRenderer blocks={blocks} />
 			<ProductsList categories={categories} initialProducts={initialProducts} />
 		</>

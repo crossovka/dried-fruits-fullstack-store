@@ -1,5 +1,7 @@
 'use client';
 
+import { translateAuthError } from '@/utils/translateError';
+
 interface SignInData {
 	identifier: string;
 	password: string;
@@ -17,13 +19,14 @@ export async function signIn(data: SignInData) {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data),
-			credentials: 'include', // Позволяет передавать куки
+			credentials: 'include',
 		});
 
 		const responseData = await response.json();
 
 		if (!response.ok) {
-			return { error: responseData?.error || 'Ошибка при входе' };
+			const translated = translateAuthError(responseData?.error || '');
+			return { error: translated };
 		}
 
 		return { data: responseData };
@@ -39,18 +42,37 @@ export async function signUp(data: SignUpData) {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data),
-			credentials: 'include', // Позволяет передавать куки
+			credentials: 'include',
 		});
 
 		const responseData = await response.json();
 
 		if (!response.ok) {
-			return { error: responseData?.error || 'Ошибка при регистрации' };
+			const translated = translateAuthError(responseData?.error || '');
+			return { error: translated };
 		}
 
 		return { data: responseData };
 	} catch (error) {
 		console.error('Ошибка при регистрации:', error);
 		return { error: 'Ошибка сервера. Попробуйте позже.' };
+	}
+}
+
+export async function logout() {
+	try {
+		const response = await fetch('/api/auth/logout', {
+			method: 'POST',
+			credentials: 'include',
+		});
+
+		if (!response.ok) {
+			return { error: 'Ошибка при выходе из аккаунта' };
+		} else {
+			return { success: true };
+		}
+	} catch (error) {
+		console.error('Ошибка logout:', error);
+		return { error: 'Ошибка при попытке выхода. Попробуйте позже.' };
 	}
 }

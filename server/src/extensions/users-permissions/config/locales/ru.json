@@ -1,0 +1,9 @@
+{
+  "Auth.form.error.email.taken": "Email уже используется",
+  "Auth.form.error.username.taken": "Имя пользователя уже занято",
+  "Auth.form.error.invalid": "Неверный email или пароль",
+  "Auth.form.error.code.provide": "Необходимо указать код",
+  "Auth.form.error.email.provide": "Необходимо указать email",
+  "Auth.form.error.username.provide": "Необходимо указать имя пользователя",
+  "Auth.form.error.password.provide": "Необходимо указать пароль"
+}
