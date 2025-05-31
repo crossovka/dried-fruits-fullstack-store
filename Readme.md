@@ -1,8 +1,9 @@
 # Интернет магазин продуктов
 
 ## Описание проекта
-- strapi
+- strapi cms
 - Next js
+- yookassa
 
 ---
 

@@ -492,10 +492,16 @@ export interface ApiOrderOrder extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::order.order'> &
       Schema.Attribute.Private;
     orderStatus: Schema.Attribute.Enumeration<
-      ['created', 'paid', 'shipped', 'delivered', 'cancelled']
+      [
+        '\u041E\u0436\u0438\u0434\u0430\u0435\u0442 \u043E\u043F\u043B\u0430\u0442\u044B',
+        '\u041E\u043F\u043B\u0430\u0447\u0435\u043D',
+        '\u041E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D',
+        '\u0414\u043E\u0441\u0442\u0430\u0432\u043B\u0435\u043D',
+        '\u041E\u0442\u043C\u0435\u043D\u0451\u043D',
+      ]
     > &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'created'>;
+      Schema.Attribute.DefaultTo<'\u041E\u0436\u0438\u0434\u0430\u0435\u0442 \u043E\u043F\u043B\u0430\u0442\u044B'>;
     paymentInfo: Schema.Attribute.JSON & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     totalPrice: Schema.Attribute.Decimal & Schema.Attribute.Required;

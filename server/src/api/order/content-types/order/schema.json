@@ -28,14 +28,14 @@
     "orderStatus": {
       "type": "enumeration",
       "enum": [
-        "created",
-        "paid",
-        "shipped",
-        "delivered",
-        "cancelled"
+        "Ожидает оплаты",
+        "Оплачен",
+        "Отправлен",
+        "Доставлен",
+        "Отменён"
       ],
       "required": true,
-      "default": "created"
+      "default": "Ожидает оплаты"
     },
     "created": {
       "type": "datetime",

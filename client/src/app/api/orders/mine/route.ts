@@ -20,7 +20,7 @@ export async function GET(req: Request) {
 
 	const data = await response.json();
 
-	console.log('🔍 Ответ от Strapi:', JSON.stringify(data, null, 2));
+	// console.log('🔍 Ответ от Strapi:', JSON.stringify(data, null, 2));
 
 	return NextResponse.json(data);
 }

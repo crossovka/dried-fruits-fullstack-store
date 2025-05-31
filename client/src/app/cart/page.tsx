@@ -91,12 +91,32 @@ export default function CartPage() {
 
 			const data = await response.json();
 
-			if (!response.ok) {
+			console.log('Ответ от /api/orders/create:', data);
+
+			if (!response.ok || !data.order?.id) {
 				toast.error(data.error || 'Ошибка при оформлении заказа');
-			} else {
-				toast.success('Заказ успешно оформлен');
+				return;
+			}
+
+			console.log('Создан заказ. orderId =', data.order.id);
+			// Переход к созданию платежа в YooKassa
+			const paymentRes = await fetch('/api/yookassa/pay', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					totalPrice,
+					orderId: data.order.id,
+				}),
+			});
+
+			const paymentData = await paymentRes.json();
+
+			if (paymentRes.ok && paymentData?.url) {
 				dispatch(cartActions.clearCart());
 				setAddress('');
+				window.location.href = paymentData.url; // редирект на YooKassa
+			} else {
+				toast.error(paymentData.error || 'Не удалось создать платёж');
 			}
 		} catch (error) {
 			console.error('Ошибка оформления заказа', error);

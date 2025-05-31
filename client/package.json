@@ -25,6 +25,7 @@
     "rehype-raw": "^7.0.0",
     "rehype-react": "^8.0.0",
     "sass": "^1.85.1",
+    "yookassa": "^0.1.1",
     "yup": "^1.6.1"
   },
   "devDependencies": {

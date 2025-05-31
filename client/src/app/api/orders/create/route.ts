@@ -86,7 +86,7 @@ export async function POST(req: Request) {
 				items,
 				totalPrice,
 				address,
-				orderStatus: 'created',
+				orderStatus: 'Ожидает оплаты',
 				paymentInfo: {},
 				created: new Date().toISOString(),
 			},
