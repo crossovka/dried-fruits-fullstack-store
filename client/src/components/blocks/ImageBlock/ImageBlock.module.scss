@@ -1,0 +1,10 @@
+@use "@/sass/roots" as *;
+
+.image-block {
+	padding: calc(var(--main-section-paddings) * 0.6) 0;
+
+	// .image-block__image
+	&__image {
+		padding-bottom: 65%;
+	}
+}

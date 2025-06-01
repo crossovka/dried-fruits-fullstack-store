@@ -3,11 +3,10 @@ import { notFound } from 'next/navigation';
 import { Roboto } from 'next/font/google';
 
 import { getGlobalSettings } from '@/data/loaders';
-import { Header } from '@/components/_layout/Header';
-// import { Footer } from '@/components/_layout/Footer';
 
-import StoreProvider from '@/components/StoreProvider';
-import { ToastProvider } from '@/components/ToastProvider';
+import { Header } from '@/components/_layout';
+
+import { StoreProvider, ToastProvider } from '@/providers';
 
 import { Block } from '@/types/types';
 import '../sass/main.scss';

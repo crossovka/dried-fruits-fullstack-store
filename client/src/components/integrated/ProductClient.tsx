@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { useActions } from '@/hooks/useActions';
 
-import { StrapiImage } from '../ui/StrapiImage';
-import WeightSelector from '../ui/WeightSelector';
-import Fancybox from '@/components/Fancybox';
+import { StrapiImage, WeightSelector, Fancybox } from '@/components/ui'; 
 
 import { Product } from '@/types/types';
 

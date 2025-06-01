@@ -1,3 +1,27 @@
+@use "./base/mixins" as *;
+
+// Sass-переменные
+$minWidth: 320; // Минимальная ширина страницы
+$maxWidth: 1920; // Ширина полотна (макета)
+$maxWidthContainer: 1320; // Ширина ограничивающего контейнера
+$containerPadding: 30; // Отступы контейнера
+
+// Ширина срабатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Брейкпоинты
+$pc: em($containerWidth); // ПК, ноутбуки
+$tablet: em(991); // Планшеты
+$mobile: em(767); // Телефоны L
+$mobileSmall: em(479); // Телефоны S
+
+// Тип адаптива
+$responsiveType: 1;
+
+// Шрифты
+$fontFamily: var(--ff);
+$fontSize: rem(16); // Размер шрифта по умолчанию
+
 :root {
 	--main-color: #FFFFFF;
 	--secondary-color: rgba(83, 141, 255, 0.05);

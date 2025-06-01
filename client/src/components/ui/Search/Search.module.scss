@@ -1,0 +1,28 @@
+@use "@/sass/roots" as *;
+@use "@/sass/base/mixins" as *;
+
+.search {
+	@media (max-width:$mobile) {
+		width: 100%;
+	}
+
+	// Стили для инпута
+	&__input {
+		background-color: var(--secondary-color);
+		padding: 40px 60px 40px 30px;
+		border-radius: 25px;
+
+		border: none;
+		width: 100%;
+		font-size: rem(24);
+
+		&::placeholder {
+			font-weight: var(--light);
+		}
+
+		@media (max-width:$tablet) {
+			padding: 20px 40px 20px 20px;
+		}
+
+	}
+}

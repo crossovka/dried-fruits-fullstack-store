@@ -1,0 +1,51 @@
+@use "@/sass/roots" as *;
+@use "@/sass/base/mixins" as *;
+
+.contacts {
+
+	// .contacts__container
+	&__container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	// .contacts__wrap
+	&__wrap {
+		display: flex;
+		gap: 76px;
+
+		@media (max-width:$tablet) {
+			flex-direction: column;
+			gap: 30px;
+		}
+	}
+
+	// .contacts__contacts-form
+	&__contacts-form {
+		flex: 1 1 auto;
+	}
+
+	// .contacts__image
+	&__image {
+		position: relative;
+
+		@media (min-width:$tablet) {
+			flex: 0 0 45%;
+			min-height: 150px;
+			max-height: 700px;
+			border-radius: 24px;
+			overflow: hidden;
+
+			&:not(:last-child) {
+				// TODO вроде миксины после переменных но компилятор ругается
+				// @include adaptiveValue("margin-right", 30, 10);
+			}
+		}
+
+		@media (max-width:$tablet) {
+			// padding-bottom: 56.25%; 16/9
+			padding-bottom: 45.25%;
+			width: 100%;
+		}
+	}
+}

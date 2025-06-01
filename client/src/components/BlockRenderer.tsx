@@ -1,3 +1,12 @@
+import {
+	Contacts,
+	Heading,
+	HeroSection,
+	ImageBlock,
+	Paragraph,
+	ParagraphWithImage,
+} from './blocks';
+
 import type {
 	Block,
 	HeadingProps,
@@ -5,14 +14,8 @@ import type {
 	ImageBlockProps,
 	ParagraphProps,
 	ParagraphWithImageProps,
-	ContactsProps
+	ContactsProps,
 } from '@/types/types';
-import { HeroSection } from '@/components/blocks/HeroSection';
-import Heading from './blocks/Heading';
-import { Paragraph } from './blocks/Paragraph';
-import { ParagraphWithImage } from './blocks/ParagraphWithImage';
-import ImageBlock from './blocks/ImageBlock';
-import Contacts from './blocks/Contacts/Contacts';
 
 function blockRenderer(block: Block, index: number) {
 	const uniqueKey = `${block.__component}-${block.id || index}`; // Безопасный ключ
