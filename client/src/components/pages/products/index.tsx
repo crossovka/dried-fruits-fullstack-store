@@ -9,7 +9,7 @@ import ProductCard from '@/components/ui/ProductCard'
 import Search from '@/components/ui/Search'
 import Tabs from '@/components/ui/Tabs'
 
-import { Category, Product } from '@/types/types'
+import type { Category, Product } from '@/types/types'
 
 interface ProductsProps {
 	categories: Category[]
@@ -22,30 +22,33 @@ export default function Products({
 	initialProducts,
 	initialTotalPages,
 }: ProductsProps) {
-	const [activeCategory, setActiveCategory] = useState(categories[0]?.slug || '')
+	// По умолчанию activeCategory = 'all'
+	const [activeCategory, setActiveCategory] = useState('all')
 	const [searchQuery, setSearchQuery] = useState('')
 	const [currentPage, setCurrentPage] = useState(1)
 	const [products, setProducts] = useState<Product[]>(initialProducts)
 	const [totalPages, setTotalPages] = useState(initialTotalPages)
-	const PRODUCTS_PER_PAGE = 2 // Теперь на странице будет по 2 товара
+	const PRODUCTS_PER_PAGE = 5
 
 	const fetchProducts = useCallback(async () => {
 		try {
-			const fetchedProducts = await getProducts(
-				activeCategory,
-				searchQuery,
-				currentPage,
-				PRODUCTS_PER_PAGE, // Передаем ограничение товаров на страницу
-			)
-			setProducts(fetchedProducts.items)
-			setTotalPages(fetchedProducts.pagination.pageCount)
-		} catch (error) {
-			console.error('Ошибка при загрузке продуктов:', error)
+			// При поиске игнорируем категорию, иначе фильтруем по activeCategory, если не 'all'
+			const categorySlug = searchQuery
+				? undefined
+				: activeCategory === 'all'
+				? undefined
+				: activeCategory
+	
+			const fetched = await getProducts(categorySlug, searchQuery, currentPage, PRODUCTS_PER_PAGE)
+			setProducts(fetched.items)
+			setTotalPages(fetched.pagination.pageCount)
+		} catch (e) {
+			console.error('Ошибка при загрузке продуктов:', e)
 		}
 	}, [activeCategory, searchQuery, currentPage])
 
 	useEffect(() => {
-		setCurrentPage(1)
+		setCurrentPage(1) // Сброс страницы при смене категории
 	}, [activeCategory])
 
 	useEffect(() => {
