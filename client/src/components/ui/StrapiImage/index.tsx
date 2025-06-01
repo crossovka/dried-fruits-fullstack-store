@@ -17,7 +17,15 @@ export function StrapiImage({
 	const imageUrl = getStrapiMediaURL(src);
 	if (!imageUrl) return null;
 
-	return <Image src={imageUrl} alt={alt} className={className} {...rest} />;
+	return (
+		<Image
+			src={imageUrl}
+			alt={alt}
+			className={className}
+			loading="lazy"
+			{...rest}
+		/>
+	);
 }
 
 export function getStrapiMedia(url: string | null) {
