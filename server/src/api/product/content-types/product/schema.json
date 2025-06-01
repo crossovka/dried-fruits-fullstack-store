@@ -45,8 +45,10 @@
     "old_price": {
       "type": "integer"
     },
-    "weights": {
-      "type": "json",
+    "weightVariants": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.weight-variant",
       "required": true
     }
   }

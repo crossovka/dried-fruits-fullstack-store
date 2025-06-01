@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_product_weight_variants",
+  "info": {
+    "displayName": "Weight Variant",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "integer",
+      "required": true
+    },
+    "unit": {
+      "type": "enumeration",
+      "enum": [
+        "г",
+        "кг"
+      ],
+      "required": true,
+      "default": "г"
+    },
+    "stock": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

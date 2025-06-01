@@ -587,7 +587,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    weights: Schema.Attribute.JSON & Schema.Attribute.Required;
+    weightVariants: Schema.Attribute.Component<'product.weight-variant', true> &
+      Schema.Attribute.Required;
   };
 }
 

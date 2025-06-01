@@ -4,11 +4,9 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import { useActions } from '@/hooks/useActions';
+import { StrapiImage, WeightSelector, Button } from '@/components/ui';
 
-import { StrapiImage, WeightSelector } from '@/components/ui';
-
-import { Product } from '@/types/types';
-
+import { Product, WeightVariant } from '@/types/types';
 import styles from './ProductCard.module.scss';
 
 type ProductCardProps = {
@@ -18,21 +16,25 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
 	const { addItem } = useActions();
 
-	const hasWeights = product.weights && product.weights.weights.length > 0;
+	console.log('PRODUCT DATA:', product);
 
-	const [selectedWeight, setSelectedWeight] = useState<{
-		value: number;
-		unit: string;
-	} | null>(null);
+	const hasWeights =
+		product.weightVariants && product.weightVariants.length > 0;
+
+	const [selectedWeight, setSelectedWeight] = useState<WeightVariant | null>(
+		null
+	);
 
 	useEffect(() => {
-		if (hasWeights && product.weights.weights.length > 0) {
-			setSelectedWeight(product.weights.weights[0]);
+		if (hasWeights) {
+			setSelectedWeight(product.weightVariants[0]);
+		} else {
+			setSelectedWeight(null);
 		}
-	}, [hasWeights, product.weights.weights]);
+	}, [hasWeights, product.weightVariants]);
 
 	const handleAddToCart = () => {
-		if (!selectedWeight) return;
+		if (!selectedWeight || selectedWeight.stock <= 0) return;
 		addItem({ ...product, quantity: 1, selectedWeight });
 	};
 
@@ -68,22 +70,25 @@ export default function ProductCard({ product }: ProductCardProps) {
 
 			{hasWeights && (
 				<WeightSelector
-					weights={product.weights.weights}
+					weights={product.weightVariants}
 					selectedWeight={selectedWeight}
 					setSelectedWeight={setSelectedWeight}
 					className={styles['product-card__weights']}
 				/>
 			)}
 
-			<button
-				className={`${styles['product-card__add-to-cart']} btn btn--primary`}
+			<Button
+				theme="primary"
+				size="medium"
 				onClick={handleAddToCart}
-				disabled={!selectedWeight}
+				disabled={!selectedWeight || selectedWeight.stock <= 0}
 			>
 				{selectedWeight
-					? `Добавить в корзину (${selectedWeight.value} ${selectedWeight.unit})`
+					? selectedWeight.stock > 0
+						? `Добавить в корзину (${selectedWeight.value} ${selectedWeight.unit})`
+						: `Нет в наличии (${selectedWeight.value} ${selectedWeight.unit})`
 					: 'Выберите вес'}
-			</button>
+			</Button>
 		</div>
 	);
 }

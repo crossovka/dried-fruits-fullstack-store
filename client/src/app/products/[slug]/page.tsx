@@ -1,19 +1,18 @@
 import { notFound } from 'next/navigation';
 import { getProductBySlug, getProducts } from '@/data/loaders';
 import ProductClient from '@/components/integrated/ProductClient';
+import { Fancybox, StrapiImage } from '@/components/ui';
 
 interface ProductPageProps {
 	params: { slug: string };
 }
 
-// Функция для генерации статических путей
 export async function generateStaticParams() {
 	const { items: products } = await getProducts();
 
-	// Проверяем, что products действительно является массивом
 	if (!Array.isArray(products)) {
 		console.error('Ошибка: ожидался массив продуктов, но получено:', products);
-		return []; // Возвращаем пустой массив в случае ошибки
+		return [];
 	}
 
 	return products.map((product) => ({
@@ -21,7 +20,6 @@ export async function generateStaticParams() {
 	}));
 }
 
-// Серверный компонент для страницы продукта
 export default async function ProductPage({ params }: ProductPageProps) {
 	const product = await getProductBySlug(params.slug);
 
@@ -32,8 +30,35 @@ export default async function ProductPage({ params }: ProductPageProps) {
 	return (
 		<div className="product-page">
 			<div className="product-page__container">
-				{/* Передаем product в клиентский компонент */}
-				<ProductClient product={product} />
+				<div className="product-page__wrap">
+					<Fancybox
+						className="product-page__image -ibg"
+						delegate="[data-fancybox]"
+					>
+						<StrapiImage
+							src={product.image.url}
+							alt={product.image.alternativeText || product.title}
+							fill
+							data-fancybox="gallery"
+						/>
+					</Fancybox>
+
+					<div className="product-page__content">
+						<h1>{product.title}</h1>
+						<p>{product.description}</p>
+						<div className="product-page__content-prices h3">
+							<span>{product.price} Р</span>
+							{product.old_price && (
+								<span className="product-page__old-price">
+									{product.old_price} Р
+								</span>
+							)}
+						</div>
+					</div>
+				</div>
+
+				{/* Клиентская интерактивная часть */}
+				<ProductClient weights={product.weights} product={product} />
 			</div>
 		</div>
 	);

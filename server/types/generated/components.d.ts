@@ -125,6 +125,21 @@ export interface LayoutHeader extends Struct.ComponentSchema {
   };
 }
 
+export interface ProductWeightVariant extends Struct.ComponentSchema {
+  collectionName: 'components_product_weight_variants';
+  info: {
+    displayName: 'Weight Variant';
+    icon: 'archive';
+  };
+  attributes: {
+    stock: Schema.Attribute.Integer & Schema.Attribute.Required;
+    unit: Schema.Attribute.Enumeration<['\u0433', '\u043A\u0433']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'\u0433'>;
+    value: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -137,6 +152,7 @@ declare module '@strapi/strapi' {
       'elements.button': ElementsButton;
       'elements.link': ElementsLink;
       'layout.header': LayoutHeader;
+      'product.weight-variant': ProductWeightVariant;
     }
   }
 }

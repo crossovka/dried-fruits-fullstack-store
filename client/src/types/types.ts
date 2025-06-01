@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export type Block =
 	| HeroSectionProps
@@ -53,13 +53,15 @@ export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'small' | 'medium' | 'large';
 
 export interface ButtonProps {
-	// id: number;
 	text?: string;
 	children?: ReactNode;
-	href: string;
-	isExternal: boolean;
+	href?: string;
+	isExternal?: boolean;
 	theme?: ButtonTheme;
 	size?: ButtonSize;
+	onClick?: MouseEventHandler<HTMLButtonElement>;
+	disabled?: boolean;
+	className?: string;
 }
 
 export interface HeadingProps extends Base<'blocks.heading'> {
@@ -113,9 +115,10 @@ export interface Category {
 
 export type Categories = Category[];
 
-export interface Weight {
+export interface WeightVariant {
 	value: number;
 	unit: string;
+	stock: number; // поле для отслеживания остатков
 }
 
 export interface Product {
@@ -128,9 +131,9 @@ export interface Product {
 	old_price?: number;
 	image: ImageProps;
 	category: Category;
-	weights: {
-		weights: Weight[]; // Здесь weights — это массив объектов типа Weight
-	};
+
+	weightVariants: WeightVariant[];
+
 	createdAt: string;
 	updatedAt: string;
 	publishedAt: string;

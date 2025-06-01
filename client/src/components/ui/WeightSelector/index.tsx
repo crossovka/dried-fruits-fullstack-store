@@ -1,11 +1,11 @@
 import styles from './WeightSelector.module.scss';
 
-import { Weight } from '@/types/types';
+import { WeightVariant } from '@/types/types';
 
 interface WeightSelectorProps {
-	weights: Weight[];
-	selectedWeight: Weight | null;
-	setSelectedWeight: (weight: Weight) => void;
+	weights: WeightVariant[];
+	selectedWeight: WeightVariant | null;
+	setSelectedWeight: (weight: WeightVariant) => void;
 	className?: string;
 }
 
@@ -15,21 +15,23 @@ export const WeightSelector: React.FC<WeightSelectorProps> = ({
 	setSelectedWeight,
 	className = '',
 }) => {
-	if (weights.length === 0) {
-		return null;
-	}
+	if (weights.length === 0) return null;
 
 	return (
 		<div className={`${styles.weights} ${className}`}>
 			{weights.map((weight) => {
 				const isActive = selectedWeight?.value === weight.value;
+				const isDisabled = weight.stock <= 0;
+
 				return (
 					<button
 						key={weight.value}
 						className={`${styles.weights__btn} ${
 							isActive ? styles.active : ''
-						}`}
-						onClick={() => setSelectedWeight(weight)}
+						} ${isDisabled ? styles.disabled : ''}`}
+						onClick={() => !isDisabled && setSelectedWeight(weight)}
+						disabled={isDisabled}
+						type="button"
 					>
 						{weight.value} {weight.unit}
 					</button>
