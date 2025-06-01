@@ -17,11 +17,13 @@
 	$result: math.div($px, $from) * 100%;
 	@return $result;
 }
+
 //REM
 @function rem($px) {
 	$result: math.div($px, 16) + rem;
 	@return $result;
 }
+
 //EM
 @function em($px, $current: 16) {
 	$result: math.div($px, $current) + em;
@@ -43,75 +45,72 @@
 }
 
 // Адаптивное свойство (clamp)
-@mixin adaptiveValue(
-	$property,
+@mixin adaptiveValue($property,
 	$startSize,
 	$minSize,
-	$widthFrom: $containerWidth,
-	$widthTo: $minWidth,
-	$keepSize: 0
-) {
-	@if ($startSize==0) {
+	$widthFrom,
+	$widthTo,
+	$maxWidth,
+	$containerWidth,
+	$minWidth,
+	$maxWidthContainer,
+	$keepSize: 0) {
+	@if ($startSize ==0) {
 		$startSize: 0.000001;
 	}
-	@if ($minSize==0) {
+
+	@if ($minSize ==0) {
 		$minSize: 0.000001;
 	}
 
-	// Для calc();
+	// Для calc()
 	$addSize: math.div($startSize - $minSize, 16);
 
-	@if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+	// Подмена $widthFrom при условии
+	@if ($widthFrom ==$containerWidth and $maxWidthContainer ==0) {
 		$widthFrom: $maxWidth;
 	}
 
-	// Брейк-поинты в EM
+	// Брейкпоинты в em
 	$widthFromMedia: em($widthFrom);
 	$widthToMedia: em($widthTo);
 
-	// Формула плавающего значения
-	// Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+	// Формула clamp
 	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
 	$yIntersection: -$widthTo * $slope + $minSize;
-	@if ($yIntersection==0) {
+
+	@if ($yIntersection ==0) {
 		$yIntersection: 0.000001;
 	}
-	$flyValue: #{rem($yIntersection)}' + ' #{$slope * 100}vw;
 
-	// Получение значения свойства
-	$propertyValue: #{'clamp(' rem($minSize) ',' $flyValue ',' rem($startSize) ')'};
-	// Если отрицательные значения
+	$flyValue: #{rem($yIntersection)}' + '#{$slope * 100}vw;
+
+	// Значение свойства по умолчанию
+	$propertyValue: clamp(#{rem($minSize)}, #{$flyValue}, #{rem($startSize)});
+
+	// Если значения отрицательные
 	@if ($minSize > $startSize) {
-		$propertyValue: #{'clamp(' rem($startSize) ',' $flyValue ',' rem($minSize) ')'};
+		$propertyValue: clamp(#{rem($startSize)}, #{$flyValue}, #{rem($minSize)});
 	}
 
-	// Если поддерживается clamp();
+	// Поддержка clamp()
 	@supports (#{$property}: $propertyValue) {
-		#{$property}: $propertyValue;
-	}
-	// Если не поддерживается clamp();
-	@supports not (#{$property}: $propertyValue) {
-		#{$property}: calc(
-			#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) /
-				#{math.div($widthFrom, 16) - math.div($widthTo, 16)}
-		);
+		#{$property}: #{$propertyValue};
 	}
 
-	// Устанавливаем значения по умолчанию
-	@if $widthFrom !=
-		$containerWidth and
-		$widthFrom !=
-		$maxWidth and
-		$keepSize !=
-		1 and
-		$keepSize !=
-		2
-	{
+	// Fallback через calc
+	@supports not (#{$property}: $propertyValue) {
+		#{$property}: calc(#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+	}
+
+	// Ограничения по min/max
+	@if $widthFrom !=$containerWidth and $widthFrom !=$maxWidth and $keepSize !=1 and $keepSize !=2 {
 		@media (min-width: $widthFromMedia) {
 			#{$property}: inherit;
 		}
 	}
-	@if $widthTo != $minWidth and $keepSize != 1 and $keepSize != 3 {
+
+	@if $widthTo !=$minWidth and $keepSize !=1 and $keepSize !=3 {
 		@media (max-width: $widthToMedia) {
 			#{$property}: inherit;
 		}
@@ -124,22 +123,23 @@
 $ui-step: 4px;
 
 @mixin ui-space($direction, $size) {
-	@if ($direction == top) {
+	@if ($direction ==top) {
 		margin-top: $ui-step * $size;
 	}
 
-	@if ($direction == bottom) {
+	@if ($direction ==bottom) {
 		margin-bottom: $ui-step * $size;
 	}
 
-	@if ($direction == left) {
+	@if ($direction ==left) {
 		margin-left: $ui-step * $size;
 	}
 
-	@if ($direction == right) {
+	@if ($direction ==right) {
 		margin-right: $ui-step * $size;
 	}
 }
+
 // .element {
 // 	// это отступ в 8 пикселей сверзу
 // 	@include ui-space(top, 2);
@@ -153,6 +153,7 @@ $ui-step: 4px;
 
 	opacity: $value * $opacity-step;
 }
+
 // .my-element {
 // 	@include ui-opacity(5);	Это применит opacity в 0.5 (5 * 0.1) к элементу с классом .my-element.
 // }

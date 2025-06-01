@@ -2,6 +2,7 @@
 @use '@/sass/base/mixins' as *;
 
 .contacts {
+
 	// .contacts__container
 	&__container {
 		display: flex;
@@ -36,8 +37,15 @@
 			overflow: hidden;
 
 			&:not(:last-child) {
-				// TODO вроде миксины после переменных но компилятор ругается
-				// @include adaptiveValue("margin-right", 30, 10);
+				@include adaptiveValue("margin-right",
+					30,
+					10,
+					$containerWidth,
+					$minWidth,
+					$maxWidth,
+					$containerWidth,
+					$minWidth,
+					$maxWidthContainer);
 			}
 		}
 

@@ -37,8 +37,15 @@
 			overflow: hidden;
 
 			&:not(:last-child) {
-				//TODO
-				// @include adaptiveValue("margin-right", 30, 10);
+				@include adaptiveValue("margin-right",
+					30,
+					10,
+					$containerWidth,
+					$minWidth,
+					$maxWidth,
+					$containerWidth,
+					$minWidth,
+					$maxWidthContainer);
 			}
 		}
 
