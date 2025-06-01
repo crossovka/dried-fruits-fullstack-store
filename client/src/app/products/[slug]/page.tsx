@@ -1,7 +1,7 @@
 import { getProductBySlug, getProducts } from '@/data/loaders'
 import { notFound } from 'next/navigation'
 
-import ProductClient from '@/components/integrated/ProductClient'
+import ProductClient from '@/components/pages/product'
 import { Fancybox, StrapiImage } from '@/components/ui'
 
 interface ProductPageProps {
