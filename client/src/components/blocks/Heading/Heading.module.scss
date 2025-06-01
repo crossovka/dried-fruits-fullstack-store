@@ -1,3 +1,5 @@
+@use "@/sass/base/mixins" as *;
+
 .heading {
 	&:not(:last-child) {
 		margin-bottom: em(35, 72);

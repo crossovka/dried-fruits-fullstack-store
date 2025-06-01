@@ -65,7 +65,7 @@ export interface ButtonProps {
 export interface HeadingProps extends Base<'blocks.heading'> {
 	text: string;
 	isCentered: boolean;
-	level?: 1 | 2 | 3 | 4 | 5 | 6;
+	level?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
 export interface HeroSectionProps extends Base<'blocks.hero-section'> {
