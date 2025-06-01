@@ -1,26 +1,14 @@
-import { getCachedHomePage, getCategories, getProducts } from '@/data/loaders'
+import { getCachedHomePage } from '@/data/loaders'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { BlockRenderer } from '@/components/BlockRenderer'
-import ProductsList from '@/components/integrated/ProductsList'
 
 async function loader() {
 	const data = await getCachedHomePage()
 	if (!data) notFound()
 
-	const categories = await getCategories()
-
-	// Проверяем, есть ли хотя бы одна категория
-	if (categories.length === 0) {
-		console.error('Ошибка: нет доступных категорий!')
-		return { ...data.data, categories, initialProducts: [] }
-	}
-
-	const initialCategory = categories[0].slug // Гарантируем, что это строка
-	const initialProducts = await getProducts(initialCategory)
-
-	return { ...data.data, categories, initialProducts }
+	return data.data
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,12 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomeRoute() {
-	const { blocks, categories, initialProducts } = await loader()
+	const { blocks } = await loader()
 
-	return (
-		<>
-			<BlockRenderer blocks={blocks} />
-			<ProductsList categories={categories} initialProducts={initialProducts} />
-		</>
-	)
+	return <BlockRenderer blocks={blocks} />
 }

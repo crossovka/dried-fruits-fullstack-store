@@ -90,6 +90,11 @@ export interface ContactsProps extends Base<'blocks.contacts'> {
 	title: string
 	image: ImageProps
 }
+
+export interface ProductsProps extends Base<'blocks.contacts'> {
+	title: string
+}
+
 //========================================================================================================================================================
 export interface PaginationMeta {
 	page: number

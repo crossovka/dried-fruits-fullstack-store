@@ -1,8 +1,12 @@
+@use '@/sass/roots' as *;
+@use '@/sass/base/mixins' as *;
+
 .products {
 	padding: calc(var(--main-section-paddings) * 1.5) 0;
 
 	// .products__container
 	&__container {
+		display: block;
 	}
 
 	// .products__tabs

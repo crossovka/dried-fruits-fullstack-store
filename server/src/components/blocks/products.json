@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_products",
+  "info": {
+    "displayName": "products"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Нащ ассортимент"
+    }
+  }
+}

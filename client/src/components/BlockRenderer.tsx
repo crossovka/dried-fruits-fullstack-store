@@ -1,4 +1,4 @@
-import { Contacts, Heading, HeroSection, ImageBlock, Paragraph, ParagraphWithImage } from './blocks'
+import { Contacts, Heading, HeroSection, ImageBlock, Paragraph, ParagraphWithImage, ProductsBlock } from './blocks'
 
 import type {
 	Block,
@@ -26,6 +26,8 @@ function blockRenderer(block: Block, index: number) {
 			return <Paragraph {...(block as ParagraphProps)} key={uniqueKey} />
 		case 'blocks.contacts':
 			return <Contacts {...(block as ContactsProps)} key={uniqueKey} />
+		case 'blocks.products':
+			return <ProductsBlock {...(block as ProductsProps)} key={uniqueKey} />
 		default:
 			console.warn(`Неизвестный блок: ${block.__component}`)
 			return null

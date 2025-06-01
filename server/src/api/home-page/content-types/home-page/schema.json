@@ -23,7 +23,8 @@
         "blocks.paragraph-with-image",
         "blocks.hero-section",
         "blocks.heading",
-        "blocks.paragraph"
+        "blocks.paragraph",
+        "blocks.products"
       ]
     }
   }

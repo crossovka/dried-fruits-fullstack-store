@@ -19,6 +19,16 @@ export default function Tabs({
 }: TabsProps) {
 	return (
 		<div className={`${styles.tabs} ${className}`}>
+			<button
+				className={`${styles.tabs__btn} ${
+					activeCategory === 'all' ? styles['tabs__btn--active'] : ''
+				}`}
+				onClick={() => setActiveCategory('all')}
+			>
+				Все категории
+			</button>
+
+			{/* Остальные категории */}
 			{categories.map((category) => {
 				const isActive = activeCategory === category.slug
 				return (
