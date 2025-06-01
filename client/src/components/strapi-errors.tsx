@@ -7,12 +7,12 @@
 // }
 
 interface StrapiErrorsProps {
-	message: string | null;
-	name: string;
-	status: string | null;
+	message: string | null
+	name: string
+	status: string | null
 }
 
 export function StrapiErrors({ error }: { readonly error: StrapiErrorsProps }) {
-	if (!error?.message) return null;
-	return <div className="">{error.message}</div>;
+	if (!error?.message) return null
+	return <div className="">{error.message}</div>
 }

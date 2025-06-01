@@ -1,22 +1,22 @@
-'use strict';
+'use strict'
 
 module.exports = {
 	async create(ctx) {
-		const user = ctx.state.user;
+		const user = ctx.state.user
 		if (!user) {
-			return ctx.unauthorized('Пользователь не авторизован');
+			return ctx.unauthorized('Пользователь не авторизован')
 		}
 
-		const data = ctx.request.body.data;
+		const data = ctx.request.body.data
 
 		// Принудительно ставим связь с пользователем
-		data.user = user.id;
+		data.user = user.id
 
 		const entity = await strapi.entityService.create('api::order.order', {
 			data,
-		});
+		})
 
-		return this.transformResponse(entity);
+		return this.transformResponse(entity)
 	},
 
 	// async find(ctx) {
@@ -40,9 +40,9 @@ module.exports = {
 	// 	return { data, meta };
 	// },
 	async find(ctx) {
-		const user = ctx.state.user;
+		const user = ctx.state.user
 		if (!user) {
-			return ctx.unauthorized('Пользователь не авторизован');
+			return ctx.unauthorized('Пользователь не авторизован')
 		}
 
 		// Правильный фильтр для связи manyToOne user
@@ -52,11 +52,11 @@ module.exports = {
 				...(ctx.query.filters || {}),
 				'user.id': user.id,
 			},
-		};
+		}
 
 		// Вызов базового find с новым фильтром
-		const { data, meta } = await super.find(ctx);
+		const { data, meta } = await super.find(ctx)
 
-		return { data, meta };
+		return { data, meta }
 	},
-};
+}

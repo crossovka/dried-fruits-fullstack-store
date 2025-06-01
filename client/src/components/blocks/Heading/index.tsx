@@ -1,14 +1,15 @@
-import clsx from 'clsx';
-import { JSX } from 'react';
+import clsx from 'clsx'
 
-import styles from './Heading.module.scss';
+import { JSX } from 'react'
 
-import type { HeadingProps } from '@/types/types';
+import styles from './Heading.module.scss'
 
-const defaultLevel: HeadingProps['level'] = 'h3';
+import type { HeadingProps } from '@/types/types'
+
+const defaultLevel: HeadingProps['level'] = 'h3'
 
 export function Heading({ text, isCentered, level }: Readonly<HeadingProps>) {
-	const HeadingTag = (level ?? defaultLevel) as keyof JSX.IntrinsicElements;
+	const HeadingTag = (level ?? defaultLevel) as keyof JSX.IntrinsicElements
 
 	return (
 		<HeadingTag
@@ -18,10 +19,10 @@ export function Heading({ text, isCentered, level }: Readonly<HeadingProps>) {
 				'__container',
 				{
 					[styles['heading--centered']]: isCentered,
-				}
+				},
 			)}
 		>
 			{text}
 		</HeadingTag>
-	);
+	)
 }

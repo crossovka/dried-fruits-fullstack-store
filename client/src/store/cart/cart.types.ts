@@ -1,14 +1,14 @@
-import { Product } from '@/types/types';
+import { Product } from '@/types/types'
 
 export interface CartState {
-	items: CartItem[];
-	totalPrice: number;
+	items: CartItem[]
+	totalPrice: number
 }
 
 export interface CartItem extends Product {
-	quantity: number;
+	quantity: number
 	selectedWeight: {
-		value: number;
-		unit: string;
-	};
+		value: number
+		unit: string
+	}
 }

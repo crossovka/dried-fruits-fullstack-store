@@ -1,4 +1,4 @@
-@use "sass:math";
+@use 'sass:math';
 
 //Подключение шрифта
 // @mixin font($font_name, $file_name, $weight, $style) {
@@ -31,7 +31,7 @@
 //Currency
 @mixin currency($sym) {
 	&::after {
-		content: "#{$sym}";
+		content: '#{$sym}';
 	}
 }
 
@@ -43,7 +43,14 @@
 }
 
 // Адаптивное свойство (clamp)
-@mixin adaptiveValue($property, $startSize, $minSize, $widthFrom: $containerWidth, $widthTo: $minWidth, $keepSize: 0) {
+@mixin adaptiveValue(
+	$property,
+	$startSize,
+	$minSize,
+	$widthFrom: $containerWidth,
+	$widthTo: $minWidth,
+	$keepSize: 0
+) {
 	@if ($startSize==0) {
 		$startSize: 0.000001;
 	}
@@ -69,13 +76,13 @@
 	@if ($yIntersection==0) {
 		$yIntersection: 0.000001;
 	}
-	$flyValue: #{rem($yIntersection)}" + " #{$slope * 100}vw;
+	$flyValue: #{rem($yIntersection)}' + ' #{$slope * 100}vw;
 
 	// Получение значения свойства
-	$propertyValue: #{"clamp(" rem($minSize) "," $flyValue "," rem($startSize) ")"};
+	$propertyValue: #{'clamp(' rem($minSize) ',' $flyValue ',' rem($startSize) ')'};
 	// Если отрицательные значения
 	@if ($minSize > $startSize) {
-		$propertyValue: #{"clamp(" rem($startSize) "," $flyValue "," rem($minSize) ")"};
+		$propertyValue: #{'clamp(' rem($startSize) ',' $flyValue ',' rem($minSize) ')'};
 	}
 
 	// Если поддерживается clamp();
@@ -84,11 +91,22 @@
 	}
 	// Если не поддерживается clamp();
 	@supports not (#{$property}: $propertyValue) {
-		#{$property}: calc(#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+		#{$property}: calc(
+			#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) /
+				#{math.div($widthFrom, 16) - math.div($widthTo, 16)}
+		);
 	}
 
 	// Устанавливаем значения по умолчанию
-	@if $widthFrom != $containerWidth and $widthFrom != $maxWidth and $keepSize != 1 and $keepSize != 2 {
+	@if $widthFrom !=
+		$containerWidth and
+		$widthFrom !=
+		$maxWidth and
+		$keepSize !=
+		1 and
+		$keepSize !=
+		2
+	{
 		@media (min-width: $widthFromMedia) {
 			#{$property}: inherit;
 		}

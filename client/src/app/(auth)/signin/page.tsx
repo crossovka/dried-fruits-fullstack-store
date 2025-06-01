@@ -1,7 +1,8 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import SignInForm from '@/components/forms/SignInForm';
+import Link from 'next/link'
+
+import SignInForm from '@/components/forms/SignInForm'
 
 const SignInPage = () => {
 	return (
@@ -14,7 +15,7 @@ const SignInPage = () => {
 				</p>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default SignInPage;
+export default SignInPage

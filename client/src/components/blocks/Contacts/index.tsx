@@ -1,12 +1,12 @@
-import { Heading } from '../Heading';
-import ContactsForm from './ContactsForm';
+import clsx from 'clsx'
 
-import { StrapiImage, Fancybox } from '@/components/ui';
+import { Fancybox, StrapiImage } from '@/components/ui'
 
-import clsx from 'clsx';
-import styles from './Contacts.module.scss';
+import { Heading } from '../Heading'
+import styles from './Contacts.module.scss'
+import ContactsForm from './ContactsForm'
 
-import { ContactsProps } from '@/types/types';
+import { ContactsProps } from '@/types/types'
 
 export const Contacts: React.FC<ContactsProps> = ({ title, image }) => {
 	return (
@@ -17,10 +17,7 @@ export const Contacts: React.FC<ContactsProps> = ({ title, image }) => {
 					<div className={styles.contacts__contactsForm}>
 						<ContactsForm />
 					</div>
-					<Fancybox
-						className={clsx(styles.contacts__image, '-ibg')}
-						delegate="[data-fancybox]"
-					>
+					<Fancybox className={clsx(styles.contacts__image, '-ibg')} delegate="[data-fancybox]">
 						<StrapiImage
 							src={image.url}
 							alt={image.alternativeText || 'No alternative text provided'}
@@ -32,5 +29,5 @@ export const Contacts: React.FC<ContactsProps> = ({ title, image }) => {
 				</div>
 			</div>
 		</section>
-	);
-};
+	)
+}

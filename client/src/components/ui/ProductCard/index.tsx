@@ -1,49 +1,46 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import Link from 'next/link'
 
-import { useActions } from '@/hooks/useActions';
-import { StrapiImage, WeightSelector, Button } from '@/components/ui';
+import { useEffect, useState } from 'react'
 
-import { Product, WeightVariant } from '@/types/types';
-import styles from './ProductCard.module.scss';
+import { useActions } from '@/hooks/useActions'
+
+import { Button, StrapiImage, WeightSelector } from '@/components/ui'
+
+import styles from './ProductCard.module.scss'
+
+import { Product, WeightVariant } from '@/types/types'
 
 type ProductCardProps = {
-	product: Product;
-};
+	product: Product
+}
 
 export default function ProductCard({ product }: ProductCardProps) {
-	const { addItem } = useActions();
+	const { addItem } = useActions()
 
-	console.log('PRODUCT DATA:', product);
+	console.log('PRODUCT DATA:', product)
 
-	const hasWeights =
-		product.weightVariants && product.weightVariants.length > 0;
+	const hasWeights = product.weightVariants && product.weightVariants.length > 0
 
-	const [selectedWeight, setSelectedWeight] = useState<WeightVariant | null>(
-		null
-	);
+	const [selectedWeight, setSelectedWeight] = useState<WeightVariant | null>(null)
 
 	useEffect(() => {
 		if (hasWeights) {
-			setSelectedWeight(product.weightVariants[0]);
+			setSelectedWeight(product.weightVariants[0])
 		} else {
-			setSelectedWeight(null);
+			setSelectedWeight(null)
 		}
-	}, [hasWeights, product.weightVariants]);
+	}, [hasWeights, product.weightVariants])
 
 	const handleAddToCart = () => {
-		if (!selectedWeight || selectedWeight.stock <= 0) return;
-		addItem({ ...product, quantity: 1, selectedWeight });
-	};
+		if (!selectedWeight || selectedWeight.stock <= 0) return
+		addItem({ ...product, quantity: 1, selectedWeight })
+	}
 
 	return (
 		<div className={styles['product-card']}>
-			<Link
-				href={`/products/${product.slug}`}
-				className={`${styles['product-card__image']} -ibg`}
-			>
+			<Link href={`/products/${product.slug}`} className={`${styles['product-card__image']} -ibg`}>
 				<StrapiImage
 					src={product.image.url}
 					alt={product.image.alternativeText || product.title}
@@ -55,16 +52,12 @@ export default function ProductCard({ product }: ProductCardProps) {
 				<Link href={`/products/${product.slug}`}>{product.title}</Link>
 			</h3>
 
-			<p className={styles['product-card__description']}>
-				{product.description}
-			</p>
+			<p className={styles['product-card__description']}>{product.description}</p>
 
 			<div className={styles['product-card__prices']}>
 				<span>{product.price} Р</span>
 				{product.old_price && (
-					<span className={styles['product-card__old-price']}>
-						{product.old_price} Р
-					</span>
+					<span className={styles['product-card__old-price']}>{product.old_price} Р</span>
 				)}
 			</div>
 
@@ -90,5 +83,5 @@ export default function ProductCard({ product }: ProductCardProps) {
 					: 'Выберите вес'}
 			</Button>
 		</div>
-	);
+	)
 }

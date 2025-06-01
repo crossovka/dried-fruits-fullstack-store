@@ -1,2 +1,2 @@
-export * from './StoreProvider';
-export * from './ToastProvider';
+export * from './StoreProvider'
+export * from './ToastProvider'

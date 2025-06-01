@@ -1,4 +1,4 @@
-@use "./base/mixins" as *;
+@use './base/mixins' as *;
 
 // Sass-переменные
 $minWidth: 320; // Минимальная ширина страницы
@@ -23,27 +23,28 @@ $fontFamily: var(--ff);
 $fontSize: rem(16); // Размер шрифта по умолчанию
 
 :root {
-	--main-color: #FFFFFF;
+	--main-color: #ffffff;
 	--secondary-color: rgba(83, 141, 255, 0.05);
-	--accent-color: #FEB302;
-	--tertiary-color: #DA5C5C;
+	--accent-color: #feb302;
+	--tertiary-color: #da5c5c;
 
 	--main-font-color: #343030;
-	--secondary-font-color: #FFFFFF;
+	--secondary-font-color: #ffffff;
 
 	--further-font-color: rgba(64, 36, 149, 0.35);
-	--hover-font-color: #FEB302;
+	--hover-font-color: #feb302;
 
-	--description-font-color: #605F5F;
+	--description-font-color: #605f5f;
 
-	--btn-color: #FEB302;
-	--btn-hover-color: rgba(254, 179, 2, 0.70);
+	--btn-color: #feb302;
+	--btn-hover-color: rgba(254, 179, 2, 0.7);
 
 	--btn-secondary-color: rgba(254, 179, 2, 0.45);
 	--btn-secondary-hover-color: rgba(254, 179, 2, 0.75);
 
-
-	--ff: "Roboto", sans-serif, Arial, -apple-system, "BlinkMacSystemFont", sans-serif, Helvetica, sans-serif;
+	--ff:
+		'Roboto', sans-serif, Arial, -apple-system, 'BlinkMacSystemFont', sans-serif, Helvetica,
+		sans-serif;
 
 	--hairline: 100;
 	--thin: 200;
@@ -68,15 +69,15 @@ $fontSize: rem(16); // Размер шрифта по умолчанию
 
 	--main-section-paddings: 70px;
 
-	@media (max-width:$tablet) {
+	@media (max-width: $tablet) {
 		--main-section-paddings: 50px;
 	}
 
-	@media (max-width:$mobile) {
+	@media (max-width: $mobile) {
 		--main-section-paddings: 40px;
 	}
 
-	@media (max-width:$mobileSmall) {
+	@media (max-width: $mobileSmall) {
 		--main-section-paddings: 30px;
 	}
 

@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import clsx from 'clsx';
+import clsx from 'clsx'
+import Image from 'next/image'
 
-import styles from './Pagination.module.scss';
+import styles from './Pagination.module.scss'
 
 interface PaginationProps {
-	currentPage: number;
-	totalPages: number;
-	setCurrentPage: (page: number) => void;
-	className?: string;
+	currentPage: number
+	totalPages: number
+	setCurrentPage: (page: number) => void
+	className?: string
 }
 
 export default function Pagination({
@@ -18,17 +18,14 @@ export default function Pagination({
 	setCurrentPage,
 	className = '',
 }: PaginationProps) {
-	if (totalPages <= 1) return null;
+	if (totalPages <= 1) return null
 
-	const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+	const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
 
 	return (
 		<div className={clsx(styles.pagination, className)}>
 			<button
-				className={clsx(
-					styles.pagination__btn,
-					styles['pagination__btn--mirror']
-				)}
+				className={clsx(styles.pagination__btn, styles['pagination__btn--mirror'])}
 				disabled={currentPage === 1}
 				onClick={() => setCurrentPage(currentPage - 1)}
 			>
@@ -69,5 +66,5 @@ export default function Pagination({
 				/>
 			</button>
 		</div>
-	);
+	)
 }

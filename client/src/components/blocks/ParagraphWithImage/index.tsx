@@ -1,11 +1,12 @@
-import clsx from 'clsx';
-import ReactMarkdown from 'react-markdown';
-import rehypeRaw from 'rehype-raw';
+import clsx from 'clsx'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
-import { StrapiImage, Fancybox } from '@/components/ui';
+import { Fancybox, StrapiImage } from '@/components/ui'
 
-import styles from './ParagraphWithImage.module.scss';
-import type { ParagraphWithImageProps } from '@/types/types';
+import styles from './ParagraphWithImage.module.scss'
+
+import type { ParagraphWithImageProps } from '@/types/types'
 
 export function ParagraphWithImage({
 	content,
@@ -22,10 +23,7 @@ export function ParagraphWithImage({
 				<div className={clsx(styles['text-image__text'], 'content-field')}>
 					<ReactMarkdown rehypePlugins={[rehypeRaw]}>{content}</ReactMarkdown>
 				</div>
-				<Fancybox
-					className={clsx(styles['text-image__image'], '-ibg')}
-					delegate="[data-fancybox]"
-				>
+				<Fancybox className={clsx(styles['text-image__image'], '-ibg')} delegate="[data-fancybox]">
 					<StrapiImage
 						src={image.url}
 						alt={image.alternativeText || 'No alternative text provided'}
@@ -36,5 +34,5 @@ export function ParagraphWithImage({
 				</Fancybox>
 			</div>
 		</section>
-	);
+	)
 }

@@ -1,38 +1,35 @@
-'use client';
+'use client'
 
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import { signIn } from '@/data/actions/auth-actions'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import * as yup from 'yup'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react'
 
-import { signIn } from '@/data/actions/auth-actions';
-import { StrapiErrors } from '../strapi-errors';
+import { StrapiErrors } from '../strapi-errors'
 
 type SignInFormData = {
-	email: string;
-	password: string;
-};
+	email: string
+	password: string
+}
 
 const schema = yup
 	.object({
-		email: yup
-			.string()
-			.email('Неверный формат электронной почты')
-			.required('Email обязателен'),
+		email: yup.string().email('Неверный формат электронной почты').required('Email обязателен'),
 		password: yup
 			.string()
 			.min(6, 'Пароль должен содержать минимум 6 символов')
 			.required('Пароль обязателен'),
 	})
-	.required();
+	.required()
 
 const SignInForm = () => {
-	const router = useRouter();
-	const [isLoading, setIsLoading] = useState(false);
-	const [strapiError, setStrapiError] = useState<string | null>(null);
+	const router = useRouter()
+	const [isLoading, setIsLoading] = useState(false)
+	const [strapiError, setStrapiError] = useState<string | null>(null)
 
 	const {
 		register,
@@ -41,32 +38,32 @@ const SignInForm = () => {
 		reset,
 	} = useForm<SignInFormData>({
 		resolver: yupResolver(schema),
-	});
+	})
 
 	const onSubmit = async (data: SignInFormData) => {
-		setIsLoading(true);
-		setStrapiError(null);
+		setIsLoading(true)
+		setStrapiError(null)
 
 		const response = await signIn({
 			identifier: data.email,
 			password: data.password,
-		});
+		})
 
-		setIsLoading(false);
+		setIsLoading(false)
 		if (response.error) {
-			setStrapiError(response.error);
-			toast.error(response.error, { position: 'top-right', autoClose: 3000 });
-			return;
+			setStrapiError(response.error)
+			toast.error(response.error, { position: 'top-right', autoClose: 3000 })
+			return
 		}
 
 		toast.success('Вход выполнен успешно!', {
 			position: 'top-right',
 			autoClose: 3000,
-		});
+		})
 
-		reset();
-		router.push('/profile');
-	};
+		reset()
+		router.push('/profile')
+	}
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="form auth-form">
@@ -96,7 +93,7 @@ const SignInForm = () => {
 				{isLoading ? 'Вход...' : 'Войти'}
 			</button>
 		</form>
-	);
-};
+	)
+}
 
-export default SignInForm;
+export default SignInForm

@@ -1,21 +1,21 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
 // @ts-ignore
-import YooKassa from 'yookassa';
+import YooKassa from 'yookassa'
 
-const shopId = process.env.YOOKASSA_SHOP_ID!;
-const secretKey = process.env.YOOKASSA_SECRET_KEY!;
-const redirectUrl = process.env.YOOKASSA_REDIRECT_URL!;
-const notificationUrl = process.env.YOOKASSA_NOTIFICATION_URL!;
+const shopId = process.env.YOOKASSA_SHOP_ID!
+const secretKey = process.env.YOOKASSA_SECRET_KEY!
+const redirectUrl = process.env.YOOKASSA_REDIRECT_URL!
+const notificationUrl = process.env.YOOKASSA_NOTIFICATION_URL!
 
-const yooKassa = new YooKassa({ shopId, secretKey });
+const yooKassa = new YooKassa({ shopId, secretKey })
 
 export async function POST(req: Request) {
 	try {
-		const body = await req.json();
-		const { totalPrice, orderId } = body;
+		const body = await req.json()
+		const { totalPrice, orderId } = body
 
 		if (!totalPrice || !orderId) {
-			return NextResponse.json({ error: 'Missing data' }, { status: 400 });
+			return NextResponse.json({ error: 'Missing data' }, { status: 400 })
 		}
 
 		const payment = await yooKassa.createPayment(
@@ -35,15 +35,12 @@ export async function POST(req: Request) {
 				},
 				notification_url: notificationUrl,
 			},
-			Math.random().toString(36).substring(2) // idempotence key
-		);
+			Math.random().toString(36).substring(2), // idempotence key
+		)
 
-		return NextResponse.json({ url: payment.confirmation.confirmation_url });
+		return NextResponse.json({ url: payment.confirmation.confirmation_url })
 	} catch (error) {
-		console.error('YooKassa error:', error);
-		return NextResponse.json(
-			{ error: 'Ошибка создания платежа' },
-			{ status: 500 }
-		);
+		console.error('YooKassa error:', error)
+		return NextResponse.json({ error: 'Ошибка создания платежа' }, { status: 500 })
 	}
 }

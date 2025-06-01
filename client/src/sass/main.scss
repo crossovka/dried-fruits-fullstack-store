@@ -1,11 +1,11 @@
-@use "sass:math";
-@use "./base/mixins" as *;
-@use "./roots" as *;
+@use 'sass:math';
+@use './base/mixins' as *;
+@use './roots' as *;
 
 // Базовые стили
-@import "base/null";
-@import "base/typography";
-@import "base/base";
+@import 'base/null';
+@import 'base/typography';
+@import 'base/base';
 
 /*
 (i) Стили будут применяться ко 
@@ -14,9 +14,8 @@
 Снипет (HTML): cnt
 */
 @if ($responsiveType==1) {
-
 	// Отзывчивая
-	[class*="__container"] {
+	[class*='__container'] {
 		@if ($maxWidthContainer>0) {
 			max-width: rem($maxWidthContainer);
 			box-sizing: content-box;
@@ -27,9 +26,7 @@
 			padding: 0 rem(math.div($containerPadding, 2));
 		}
 	}
-}
-
-@else {
+} @else {
 	// По брейк-поинтам
 }
 
@@ -55,7 +52,8 @@ body {
 	}
 
 	// Сайт загружен
-	.loaded & {}
+	.loaded & {
+	}
 }
 
 .wrapper {
@@ -65,23 +63,22 @@ body {
 	overflow: hidden;
 
 	// Прижимаем footer
-	>main {
+	> main {
 		flex: 1 1 auto;
 
-		.page__breadcrumbs+section {
+		.page__breadcrumbs + section {
 			padding-top: 0px !important;
 		}
 
-
 		// Если первый дочерний блок внутри main НЕ hero, то
-		>*:first-child:not(.hero) {
+		> *:first-child:not(.hero) {
 			// padding-top: calc(var(--main-section-paddings) * 2.9);
 			margin-top: calc(var(--main-section-paddings) * 2.9);
 		}
 	}
 
 	// Фикс для слайдеров
-	>* {
+	> * {
 		min-width: 0;
 	}
 }
@@ -95,14 +92,14 @@ body {
 }
 
 // integrated
-@import "components/integrated/products.scss";
+@import 'components/integrated/products.scss';
 
 // forms
-@import "components/forms/forms.scss";
-@import "components/forms/auth-forms.scss";
+@import 'components/forms/forms.scss';
+@import 'components/forms/auth-forms.scss';
 
 // pages
-@import "pages/products-page.scss";
-@import "pages/product-page.scss";
-@import "pages/cart.scss";
-@import "pages/auth.scss";
+@import 'pages/products-page.scss';
+@import 'pages/product-page.scss';
+@import 'pages/cart.scss';
+@import 'pages/auth.scss';

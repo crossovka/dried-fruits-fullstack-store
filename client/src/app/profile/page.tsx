@@ -1,36 +1,37 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { logout } from '@/data/actions/auth-actions';
-import { fetchMyOrders } from '@/data/actions/profile-actions';
+import { logout } from '@/data/actions/auth-actions'
+import { fetchMyOrders } from '@/data/actions/profile-actions'
+import { useRouter } from 'next/navigation'
+
+import { useEffect, useState } from 'react'
 
 export default function Profile() {
-	const router = useRouter();
-	const [orders, setOrders] = useState<any[]>([]);
-	const [loading, setLoading] = useState(true);
+	const router = useRouter()
+	const [orders, setOrders] = useState<any[]>([])
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		const loadOrders = async () => {
-			const { data, error } = await fetchMyOrders();
-			if (error) console.error(error);
-			if (data) setOrders(data);
-			setLoading(false);
-		};
+			const { data, error } = await fetchMyOrders()
+			if (error) console.error(error)
+			if (data) setOrders(data)
+			setLoading(false)
+		}
 
-		loadOrders();
-	}, []);
+		loadOrders()
+	}, [])
 
 	const handleLogout = async () => {
-		await logout();
-		router.push('/');
-	};
+		await logout()
+		router.push('/')
+	}
 
 	const formatDate = (dateStr: string) =>
 		new Date(dateStr).toLocaleString('ru-RU', {
 			dateStyle: 'short',
 			timeStyle: 'short',
-		});
+		})
 
 	return (
 		<div>
@@ -46,8 +47,7 @@ export default function Profile() {
 				<ul>
 					{orders.map((order) => (
 						<li key={order.id} style={{ marginBottom: 20 }}>
-							<strong>Заказ #{order.id}</strong> (Создан:{' '}
-							{formatDate(order.createdAt)})
+							<strong>Заказ #{order.id}</strong> (Создан: {formatDate(order.createdAt)})
 							<br />
 							Статус: <em>{order.orderStatus}</em>
 							<br />
@@ -72,5 +72,5 @@ export default function Profile() {
 				</ul>
 			)}
 		</div>
-	);
+	)
 }

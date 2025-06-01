@@ -1,5 +1,5 @@
-@use "@/sass/roots" as *;
-@use "@/sass/base/mixins" as *;
+@use '@/sass/roots' as *;
+@use '@/sass/base/mixins' as *;
 
 .btn {
 	display: inline-flex;
@@ -13,7 +13,6 @@
 	font-weight: var(--bold);
 
 	// Themes ========================================================================================================================================================
-
 
 	&--primary {
 		background-color: var(--btn-color);

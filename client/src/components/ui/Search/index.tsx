@@ -1,25 +1,23 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { useDebounce } from '@/hooks/useDebounce';
+import { useEffect, useState } from 'react'
 
-import styles from './Search.module.scss';
+import { useDebounce } from '@/hooks/useDebounce'
+
+import styles from './Search.module.scss'
 
 interface SearchProps {
-	setSearchQuery: (query: string) => void;
-	className?: string;
+	setSearchQuery: (query: string) => void
+	className?: string
 }
 
-export default function Search({
-	setSearchQuery,
-	className = '',
-}: SearchProps) {
-	const [query, setQuery] = useState('');
-	const debouncedQuery = useDebounce(query, 500);
+export default function Search({ setSearchQuery, className = '' }: SearchProps) {
+	const [query, setQuery] = useState('')
+	const debouncedQuery = useDebounce(query, 500)
 
 	useEffect(() => {
-		setSearchQuery(debouncedQuery);
-	}, [debouncedQuery, setSearchQuery]);
+		setSearchQuery(debouncedQuery)
+	}, [debouncedQuery, setSearchQuery])
 
 	return (
 		<div className={`${styles.search} ${className}`}>
@@ -31,5 +29,5 @@ export default function Search({
 				onChange={(e) => setQuery(e.target.value)}
 			/>
 		</div>
-	);
+	)
 }

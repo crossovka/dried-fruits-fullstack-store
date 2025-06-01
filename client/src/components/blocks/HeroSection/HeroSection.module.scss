@@ -1,5 +1,5 @@
-@use "@/sass/roots" as *;
-@use "@/sass/base/mixins" as *;
+@use '@/sass/roots' as *;
+@use '@/sass/base/mixins' as *;
 
 .hero {
 	padding-top: calc(var(--main-section-paddings) * 3.8);
@@ -34,19 +34,19 @@
 			margin-bottom: em(27, 166);
 		}
 
-		@media (max-width:$pc) {
+		@media (max-width: $pc) {
 			font-size: rem(130);
 		}
 
-		@media (max-width:$tablet) {
+		@media (max-width: $tablet) {
 			font-size: rem(90);
 		}
 
-		@media (max-width:$mobile) {
+		@media (max-width: $mobile) {
 			font-size: rem(76);
 		}
 
-		@media (max-width:$mobileSmall) {
+		@media (max-width: $mobileSmall) {
 			font-size: rem(46);
 		}
 	}

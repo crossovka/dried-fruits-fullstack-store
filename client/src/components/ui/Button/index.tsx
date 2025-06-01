@@ -1,9 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
-import clsx from 'clsx';
+import clsx from 'clsx'
+import Link from 'next/link'
 
-import styles from './Button.module.scss';
-import type { ButtonProps } from '@/types/types';
+import React from 'react'
+
+import styles from './Button.module.scss'
+
+import type { ButtonProps } from '@/types/types'
 
 export const Button: React.FC<ButtonProps> = ({
 	href,
@@ -26,12 +28,12 @@ export const Button: React.FC<ButtonProps> = ({
 					styles.btn,
 					theme && styles[`btn--${theme}`],
 					size && styles[`btn--${size}`],
-					className
+					className,
 				)}
 			>
 				{children || text}
 			</Link>
-		);
+		)
 	}
 
 	return (
@@ -40,12 +42,12 @@ export const Button: React.FC<ButtonProps> = ({
 				styles.btn,
 				theme && styles[`btn--${theme}`],
 				size && styles[`btn--${size}`],
-				className
+				className,
 			)}
 			onClick={onClick}
 			disabled={disabled}
 		>
 			{children || text}
 		</button>
-	);
-};
+	)
+}

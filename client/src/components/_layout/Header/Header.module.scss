@@ -1,5 +1,5 @@
-@use "@/sass/roots" as *;
-@use "@/sass/base/mixins" as *;
+@use '@/sass/roots' as *;
+@use '@/sass/base/mixins' as *;
 
 .header {
 	position: fixed;
@@ -9,7 +9,7 @@
 	right: 0;
 	transition: all 0.3s ease;
 
-	@media (max-width:$tablet) {
+	@media (max-width: $tablet) {
 		top: 0px;
 	}
 
@@ -42,7 +42,8 @@
 	}
 
 	// .header__left
-	&__left {}
+	&__left {
+	}
 
 	// .header__right
 	&__right {
@@ -75,7 +76,7 @@
 			span,
 			&::before,
 			&::after {
-				content: "";
+				content: '';
 				position: absolute;
 				width: 100%;
 				height: 2px;
@@ -125,7 +126,7 @@
 		flex: 0 0 155px;
 		height: 53px;
 
-		@media (max-width:$mobile) {
+		@media (max-width: $mobile) {
 			flex: 0 0 130px;
 			height: 40px;
 		}
@@ -164,14 +165,13 @@
 			height: 100%;
 			width: 25%;
 
-
 			flex-direction: column;
 			align-items: baseline;
 			gap: rem(16);
 
 			margin-top: 103px;
 
-			@media (max-width:$mobile) {
+			@media (max-width: $mobile) {
 				margin-top: 94px;
 			}
 
@@ -185,8 +185,9 @@
 			pointer-events: none;
 
 			transform: translateX(100%);
-			transition: transform 0.3s ease-in-out,
-			opacity 0.3s ease-in-out;
+			transition:
+				transform 0.3s ease-in-out,
+				opacity 0.3s ease-in-out;
 
 			// Когда меню открыто
 			.menu-open & {
@@ -197,7 +198,7 @@
 			}
 		}
 
-		@media (max-width:$mobile) {
+		@media (max-width: $mobile) {
 			width: 50%;
 		}
 	}
@@ -210,11 +211,11 @@
 	justify-content: flex-end;
 	gap: 24px;
 
-	@media (max-width:$tablet) {
+	@media (max-width: $tablet) {
 		gap: 20px;
 	}
 
-	@media (max-width:$mobileSmall) {
+	@media (max-width: $mobileSmall) {
 		gap: 10px;
 	}
 
@@ -240,10 +241,9 @@
 		&-link {
 			text-wrap: nowrap;
 
-			@media (max-width:$mobile) {
+			@media (max-width: $mobile) {
 				display: none;
 			}
-
 		}
 	}
 
@@ -276,8 +276,7 @@
 			color: var(--main-font-color);
 		}
 
-
-		@media (max-width:$mobile) {
+		@media (max-width: $mobile) {
 			gap: 12px;
 			padding: 6px 12px;
 

@@ -1,33 +1,33 @@
-'use client'; // Ensure this is a client component
+'use client'
 
-import React, { useRef, useEffect } from 'react';
-import { Fancybox as NativeFancybox } from '@fancyapps/ui';
-import '@fancyapps/ui/dist/fancybox/fancybox.css'; // Ensure the correct path
+// Ensure this is a client component
+import { Fancybox as NativeFancybox } from '@fancyapps/ui'
 
-export function Fancybox({
-	children,
-	className,
-	delegate = '[data-fancybox]',
-	options = {},
-}) {
-	const containerRef = useRef(null);
+import React, { useEffect, useRef } from 'react'
+
+import '@fancyapps/ui/dist/fancybox/fancybox.css'
+
+// Ensure the correct path
+
+export function Fancybox({ children, className, delegate = '[data-fancybox]', options = {} }) {
+	const containerRef = useRef(null)
 
 	useEffect(() => {
-		const container = containerRef.current;
+		const container = containerRef.current
 
 		if (container && typeof window !== 'undefined') {
-			NativeFancybox.bind(container, delegate, options);
+			NativeFancybox.bind(container, delegate, options)
 
 			return () => {
-				NativeFancybox.unbind(container);
-				NativeFancybox.close();
-			};
+				NativeFancybox.unbind(container)
+				NativeFancybox.close()
+			}
 		}
-	}, [delegate, options]);
+	}, [delegate, options])
 
 	return (
 		<div ref={containerRef} className={className}>
 			{children}
 		</div>
-	);
+	)
 }

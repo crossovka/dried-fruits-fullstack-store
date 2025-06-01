@@ -1,19 +1,20 @@
-import type { ImageProps, LinkProps } from '@/types/types';
+import Link from 'next/link'
 
-import Link from 'next/link';
-import { StrapiImage } from '../ui/StrapiImage';
+import { StrapiImage } from '../ui/StrapiImage'
+
+import type { ImageProps, LinkProps } from '@/types/types'
 
 interface FooterProps {
 	data: {
-		logo: ImageProps;
-		navigation: LinkProps[];
-	};
+		logo: ImageProps
+		navigation: LinkProps[]
+	}
 }
 
 export function Footer({ data }: FooterProps) {
-	if (!data) return null;
+	if (!data) return null
 
-	const { logo, navigation } = data;
+	const { logo, navigation } = data
 	return (
 		<footer className="footer">
 			<StrapiImage
@@ -28,10 +29,7 @@ export function Footer({ data }: FooterProps) {
 				<ul className="footer__links">
 					{navigation.map((item) => (
 						<li key={item.id}>
-							<Link
-								href={item.href}
-								target={item.isExternal ? '_blank' : '_self'}
-							>
+							<Link href={item.href} target={item.isExternal ? '_blank' : '_self'}>
 								{<h5>{item.text}</h5>}
 							</Link>
 						</li>
@@ -39,5 +37,5 @@ export function Footer({ data }: FooterProps) {
 				</ul>
 			</nav>
 		</footer>
-	);
+	)
 }

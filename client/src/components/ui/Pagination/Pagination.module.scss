@@ -1,6 +1,6 @@
-@use "@/sass/roots" as *;
-@use "@/sass/base/mixins" as *;
-@use "@/sass/base/placeholders" as *;
+@use '@/sass/roots' as *;
+@use '@/sass/base/mixins' as *;
+@use '@/sass/base/placeholders' as *;
 
 .pagination {
 	display: flex;
@@ -30,7 +30,8 @@
 		}
 	}
 
-	&__icon {}
+	&__icon {
+	}
 
 	&__pages {
 		display: flex;

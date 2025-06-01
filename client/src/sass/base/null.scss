@@ -56,7 +56,9 @@ input,
 textarea {
 	background: transparent;
 }
-input[type='date']::-webkit-calendar-picker-indicator { filter: invert(100%); }
+input[type='date']::-webkit-calendar-picker-indicator {
+	filter: invert(100%);
+}
 
 button {
 	cursor: pointer;

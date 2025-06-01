@@ -1,8 +1,7 @@
-@use "@/sass/roots" as *;
-@use "@/sass/base/mixins" as *;
+@use '@/sass/roots' as *;
+@use '@/sass/base/mixins' as *;
 
 .contacts {
-
 	// .contacts__container
 	&__container {
 		display: flex;
@@ -14,7 +13,7 @@
 		display: flex;
 		gap: 76px;
 
-		@media (max-width:$tablet) {
+		@media (max-width: $tablet) {
 			flex-direction: column;
 			gap: 30px;
 		}
@@ -29,7 +28,7 @@
 	&__image {
 		position: relative;
 
-		@media (min-width:$tablet) {
+		@media (min-width: $tablet) {
 			flex: 0 0 45%;
 			min-height: 150px;
 			max-height: 700px;
@@ -42,7 +41,7 @@
 			}
 		}
 
-		@media (max-width:$tablet) {
+		@media (max-width: $tablet) {
 			// padding-bottom: 56.25%; 16/9
 			padding-bottom: 45.25%;
 			width: 100%;

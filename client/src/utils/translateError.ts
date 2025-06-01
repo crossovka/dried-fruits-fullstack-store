@@ -1,5 +1,5 @@
 export function translateAuthError(message: string): string {
-	if (!message) return 'Произошла неизвестная ошибка.';
+	if (!message) return 'Произошла неизвестная ошибка.'
 
 	const map: Record<string, string> = {
 		'Email or Username are already taken': 'Email или имя пользователя уже заняты',
@@ -9,12 +9,12 @@ export function translateAuthError(message: string): string {
 		'Username already taken': 'Имя пользователя уже занято',
 		'Email already taken': 'Email уже используется',
 		'Invalid email': 'Неверный формат email',
-	};
+	}
 
 	// Перебор по ключу
 	const found = Object.entries(map).find(([key]) =>
-		message.toLowerCase().includes(key.toLowerCase())
-	);
+		message.toLowerCase().includes(key.toLowerCase()),
+	)
 
-	return found?.[1] || 'Ошибка авторизации. Попробуйте снова.';
+	return found?.[1] || 'Ошибка авторизации. Попробуйте снова.'
 }

@@ -1,38 +1,36 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import { useActions } from '@/hooks/useActions';
+import { useActions } from '@/hooks/useActions'
 
-import { WeightSelector, Button } from '@/components/ui';
+import { Button, WeightSelector } from '@/components/ui'
 
-import { Product, WeightVariant } from '@/types/types';
+import { Product, WeightVariant } from '@/types/types'
 
 type ProductClientProps = {
-	product: Product;
-};
+	product: Product
+}
 
 export default function ProductClient({ product }: ProductClientProps) {
-	const { addItem } = useActions();
+	const { addItem } = useActions()
 
-	const hasWeights = product.weightVariants && product.weightVariants.length > 0;
+	const hasWeights = product.weightVariants && product.weightVariants.length > 0
 
-	const [selectedWeight, setSelectedWeight] = useState<WeightVariant | null>(
-		null
-	);
+	const [selectedWeight, setSelectedWeight] = useState<WeightVariant | null>(null)
 
 	useEffect(() => {
 		if (hasWeights) {
-			setSelectedWeight(product.weightVariants[0]);
+			setSelectedWeight(product.weightVariants[0])
 		} else {
-			setSelectedWeight(null);
+			setSelectedWeight(null)
 		}
-	}, [hasWeights, product.weightVariants]);
+	}, [hasWeights, product.weightVariants])
 
 	const handleAddToCart = () => {
-		if (!selectedWeight || selectedWeight.stock <= 0) return;
-		addItem({ ...product, quantity: 1, selectedWeight });
-	};
+		if (!selectedWeight || selectedWeight.stock <= 0) return
+		addItem({ ...product, quantity: 1, selectedWeight })
+	}
 
 	return (
 		<div className="product-page__controls">
@@ -59,5 +57,5 @@ export default function ProductClient({ product }: ProductClientProps) {
 					: 'Выберите вес'}
 			</Button>
 		</div>
-	);
+	)
 }

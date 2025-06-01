@@ -1,5 +1,5 @@
-@use "@/sass/roots" as *;
-@use "@/sass/base/mixins" as *;
+@use '@/sass/roots' as *;
+@use '@/sass/base/mixins' as *;
 
 .weights {
 	display: flex;
@@ -20,7 +20,6 @@
 
 		cursor: pointer;
 		transition: all 0.2s ease;
-
 
 		&:hover:not(:disabled) {
 			background: var(--btn-hover-color);

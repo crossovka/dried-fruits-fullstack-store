@@ -1,6 +1,8 @@
-'use client';
-import SignUpForm from '@/components/forms/SignUpForm';
-import Link from 'next/link';
+'use client'
+
+import Link from 'next/link'
+
+import SignUpForm from '@/components/forms/SignUpForm'
 
 const SignUpPage = () => {
 	return (
@@ -13,7 +15,7 @@ const SignUpPage = () => {
 				</p>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default SignUpPage;
+export default SignUpPage

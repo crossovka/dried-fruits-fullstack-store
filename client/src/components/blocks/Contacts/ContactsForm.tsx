@@ -1,9 +1,10 @@
-'use client';
-import { toast } from 'react-toastify';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { contactsService } from '@/data/services/services';
+'use client'
+
+import { contactsService } from '@/data/services/services'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import * as yup from 'yup'
 
 // Определяем схему валидации с использованием Yup
 const schema = yup
@@ -18,13 +19,13 @@ const schema = yup
 			.required('Сообщение обязательно')
 			.min(10, 'Сообщение должно быть не менее 10 символов'),
 	})
-	.required();
+	.required()
 
 type FormValues = {
-	name: string;
-	phone: string;
-	message: string;
-};
+	name: string
+	phone: string
+	message: string
+}
 
 const ContactsForm: React.FC = () => {
 	const {
@@ -34,12 +35,12 @@ const ContactsForm: React.FC = () => {
 		reset,
 	} = useForm<FormValues>({
 		resolver: yupResolver(schema),
-	});
+	})
 
 	const onSubmit: SubmitHandler<FormValues> = async (data) => {
 		try {
 			// Отправляем данные на сервер
-			await contactsService(data);
+			await contactsService(data)
 
 			// Отображаем уведомление об успехе
 			toast.success('Вы успешно подписаны на рассылку!', {
@@ -49,27 +50,24 @@ const ContactsForm: React.FC = () => {
 				closeOnClick: true,
 				pauseOnHover: true,
 				draggable: true,
-			});
+			})
 
 			// Очищаем форму
-			reset();
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			reset()
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
-			console.error('Ошибка при отправке формы:', error);
+			console.error('Ошибка при отправке формы:', error)
 
 			// Отображаем уведомление об ошибке
 			toast.error('Произошла ошибка при подписке. Попробуйте снова.', {
 				position: 'top-right',
 				autoClose: 3000,
-			});
+			})
 		}
-	};
+	}
 
 	return (
-		<form
-			onSubmit={handleSubmit(onSubmit)}
-			className="contacts__contacts-form contacts-form form"
-		>
+		<form onSubmit={handleSubmit(onSubmit)} className="contacts__contacts-form contacts-form form">
 			<div className="form-group">
 				<label htmlFor="name" className="label">
 					Имя
@@ -112,7 +110,7 @@ const ContactsForm: React.FC = () => {
 				Отправить
 			</button>
 		</form>
-	);
-};
+	)
+}
 
-export default ContactsForm;
+export default ContactsForm

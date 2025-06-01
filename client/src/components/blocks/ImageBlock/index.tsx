@@ -1,20 +1,16 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 
-import { StrapiImage, Fancybox } from '@/components/ui';
+import { Fancybox, StrapiImage } from '@/components/ui'
 
-import styles from './ImageBlock.module.scss';
+import styles from './ImageBlock.module.scss'
 
-import type { ImageBlockProps } from '@/types/types';
+import type { ImageBlockProps } from '@/types/types'
 
 export function ImageBlock({ image }: Readonly<ImageBlockProps>) {
 	return (
 		<section className={clsx(styles.imageBlock, 'image-block', '__container')}>
 			<Fancybox
-				className={clsx(
-					styles.imageBlock__image,
-					'image-block__image',
-					'-ibg_contain'
-				)}
+				className={clsx(styles.imageBlock__image, 'image-block__image', '-ibg_contain')}
 				delegate="[data-fancybox]"
 			>
 				<StrapiImage
@@ -25,5 +21,5 @@ export function ImageBlock({ image }: Readonly<ImageBlockProps>) {
 				/>
 			</Fancybox>
 		</section>
-	);
+	)
 }
