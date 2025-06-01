@@ -1,7 +1,8 @@
 {
   "collectionName": "components_blocks_products",
   "info": {
-    "displayName": "products"
+    "displayName": "products",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -9,6 +10,12 @@
       "type": "string",
       "required": true,
       "default": "Нащ ассортимент"
+    },
+    "perPage": {
+      "type": "integer",
+      "required": true,
+      "default": 5,
+      "min": 1
     }
   }
 }

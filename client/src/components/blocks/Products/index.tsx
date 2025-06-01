@@ -2,9 +2,20 @@ import { getCategories, getProducts } from '@/data/loaders'
 
 import ProductsClient from './Products.client'
 
-export async function ProductsBlock() {
-	const categories = await getCategories()
-	const { items: initialProducts } = await getProducts(categories[0].slug)
+import { ProductsProps } from '@/types/types'
 
-	return <ProductsClient categories={categories} initialProducts={initialProducts} />
+export async function ProductsBlock({ title, perPage }: Readonly<ProductsProps>) {
+	const categories = await getCategories()
+
+	// Чтобы при первой загрузке сразу взять правильное perPage, передаем его
+	const { items: initialProducts } = await getProducts(undefined, '', 1, perPage)
+
+	return (
+		<ProductsClient
+			title={title}
+			categories={categories}
+			initialProducts={initialProducts}
+			perPage={perPage}
+		/>
+	)
 }

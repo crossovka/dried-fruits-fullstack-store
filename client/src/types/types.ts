@@ -93,6 +93,7 @@ export interface ContactsProps extends Base<'blocks.contacts'> {
 
 export interface ProductsProps extends Base<'blocks.contacts'> {
 	title: string
+	perPage: number
 }
 
 //========================================================================================================================================================

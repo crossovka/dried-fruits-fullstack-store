@@ -13,27 +13,29 @@ import styles from './Products.module.scss'
 import { Category, Product } from '@/types/types'
 
 interface ProductsProps {
+	title: string
 	categories: Category[]
 	initialProducts: Product[]
+	perPage: number
 }
 
-export default function ProductsClient({ categories, initialProducts }: ProductsProps) {
-	const [activeCategory, setActiveCategory] = useState(categories[0].slug)
+export default function ProductsClient({ title, categories, initialProducts, perPage }: ProductsProps) {
+	const [activeCategory, setActiveCategory] = useState('all')
 	const [products, setProducts] = useState(initialProducts)
 
 	useEffect(() => {
 		async function fetchData() {
-			const { items } = await getProducts(activeCategory)
+			const categorySlug = activeCategory === 'all' ? undefined : activeCategory
+			const { items } = await getProducts(categorySlug, '', 1, perPage)
 			setProducts(items)
 		}
-
 		fetchData()
-	}, [activeCategory])
+	}, [activeCategory, perPage])
 
 	return (
 		<div className={styles.products}>
 			<div className={styles.products__container}>
-				<Heading text="Наш ассортимент" level="h1" isCentered id="products-heading" />
+				<Heading text={title} level="h1" isCentered id="products-heading" />
 				<Tabs
 					categories={categories}
 					activeCategory={activeCategory}

@@ -1,6 +1,6 @@
 import { getCategories, getProducts } from '@/data/loaders'
 
-import Products from '@/components/pages/products/Products'
+import Products from '@/components/pages/products'
 
 import { Category } from '@/types/types'
 
