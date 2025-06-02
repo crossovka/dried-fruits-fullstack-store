@@ -9,7 +9,7 @@ import * as yup from 'yup'
 
 import { useState } from 'react'
 
-import { StrapiErrors } from '../strapi-errors'
+import { StrapiErrors } from '@/components/strapi-errors'
 
 type SignUpFormData = {
 	username: string
@@ -44,11 +44,7 @@ const SignUpForm = () => {
 	const router = useRouter()
 
 	const [isLoading, setIsLoading] = useState(false)
-	const [strapiError, setStrapiError] = useState<{
-		message: string
-		name: string
-		status: string | null
-	} | null>(null)
+	const [strapiError, setStrapiError] = useState<string | null>(null)
 
 	const onSubmit = async (data: SignUpFormData) => {
 		setIsLoading(true)
@@ -104,10 +100,18 @@ const SignUpForm = () => {
 			</div>
 
 			{/* Выводим ошибку Strapi, если она есть */}
-			{/* {strapiError && <StrapiErrors error={strapiError} />} */}
+			{strapiError && (
+				<StrapiErrors
+					error={{
+						message: strapiError,
+						name: 'ValidationError',
+						status: '400',
+					}}
+				/>
+			)}
 
 			<button type="submit" className="btn btn--primary" disabled={isLoading}>
-				{isLoading ? 'Регестрация...' : 'Зарегистрироваться'}
+				{isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
 			</button>
 		</form>
 	)

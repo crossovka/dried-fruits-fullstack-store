@@ -4,7 +4,6 @@
 @use '@/sass/base/mixins' as *;
 
 .tabs {
-
 	// .tabs__btn
 	&__btn {
 		font-size: rem(18);
@@ -13,7 +12,6 @@
 		transition: all 0.3s ease;
 
 		@media (any-hover: hover) {
-
 			// Отключаем hover для активной кнопки
 			&:not(&--active):hover {
 				background: var(--btn-secondary-color);

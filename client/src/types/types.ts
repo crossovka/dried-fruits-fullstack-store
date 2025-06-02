@@ -6,6 +6,7 @@ export type Block =
 	| ParagraphProps
 	| ParagraphWithImageProps
 	| ImageBlockProps
+	| ProductsProps
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	| Base<ComponentType, any> // ✅ Добавляем базовый тип
 
@@ -18,6 +19,7 @@ type ComponentType =
 	| 'blocks.subscribe'
 	| 'blocks.image'
 	| 'blocks.contacts'
+	| 'blocks.products'
 	| 'layout.header'
 
 interface Base<T extends ComponentType, D extends object = Record<string, unknown>> {
@@ -91,7 +93,7 @@ export interface ContactsProps extends Base<'blocks.contacts'> {
 	image: ImageProps
 }
 
-export interface ProductsProps extends Base<'blocks.contacts'> {
+export interface ProductsProps extends Base<'blocks.products'> {
 	title: string
 	perPage: number
 }
@@ -143,6 +145,15 @@ export interface Product {
 
 export type Products = Product[]
 
+export interface User {
+	id: number | string
+	username?: string
+	email?: string
+	confirmed?: boolean
+	blocked?: boolean
+	// Можно добавить поля из схемы, если нужно
+}
+
 export interface OrderItem {
 	title: string
 	quantity: number
@@ -153,11 +164,17 @@ export interface OrderItem {
 	}
 }
 
+// Если нет точной структуры paymentInfo, лучше unknown или Record<string, unknown>
+export type PaymentInfo = Record<string, unknown>
+
 export interface Order {
 	id: number | string
 	createdAt: string
-	orderStatus: string
+	updatedAt?: string
+	orderStatus: 'Ожидает оплаты' | 'Оплачен' | 'Отправлен' | 'Доставлен' | 'Отменён'
 	address: string
 	totalPrice: number
 	items: OrderItem[]
+	paymentInfo: PaymentInfo
+	user: User
 }

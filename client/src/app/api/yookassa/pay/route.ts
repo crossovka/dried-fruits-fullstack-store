@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-// @ts-ignore
+// @ts-expect-error: yookassa has no default export
 import YooKassa from 'yookassa'
 
 const shopId = process.env.YOOKASSA_SHOP_ID!

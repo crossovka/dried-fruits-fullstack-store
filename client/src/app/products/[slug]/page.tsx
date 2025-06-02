@@ -4,10 +4,6 @@ import { notFound } from 'next/navigation'
 import ProductClient from '@/components/pages/product'
 import { Fancybox, StrapiImage } from '@/components/ui'
 
-interface ProductPageProps {
-	params: { slug: string }
-}
-
 export async function generateStaticParams() {
 	const { items: products } = await getProducts()
 
@@ -21,12 +17,11 @@ export async function generateStaticParams() {
 	}))
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-	const product = await getProductBySlug(params.slug)
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
 
-	if (!product) {
-		notFound()
-	}
+	const product = await getProductBySlug(slug)
+	if (!product) notFound()
 
 	return (
 		<div className="product-page">
@@ -53,8 +48,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 					</div>
 				</div>
 
-				{/* Клиентская интерактивная часть */}
-				<ProductClient weights={product.weights} product={product} />
+				{/* Здесь НЕ передаем weights отдельно */}
+				<ProductClient product={product} />
 			</div>
 		</div>
 	)

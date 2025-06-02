@@ -31,6 +31,7 @@
 	"devDependencies": {
 		"@eslint/eslintrc": "^3",
 		"@trivago/prettier-plugin-sort-imports": "^5.2.2",
+		"@types/koa": "^2.15.0",
 		"@types/node": "^20",
 		"@types/qs": "^6.9.18",
 		"@types/react": "^19",

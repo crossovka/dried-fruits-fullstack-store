@@ -36,6 +36,7 @@ export async function POST(req: Request) {
 			headers: responseHeaders,
 		})
 	} catch (error) {
+		console.error('Ошибка при регестрации:', error)
 		return NextResponse.json({ error: 'Ошибка сервера. Попробуйте позже.' }, { status: 500 })
 	}
 }

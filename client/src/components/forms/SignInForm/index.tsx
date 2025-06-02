@@ -9,7 +9,7 @@ import * as yup from 'yup'
 
 import { useState } from 'react'
 
-import { StrapiErrors } from '../strapi-errors'
+import { StrapiErrors } from '@/components/strapi-errors'
 
 type SignInFormData = {
 	email: string
@@ -79,7 +79,7 @@ const SignInForm = () => {
 				{errors.password && <p className="error">{errors.password.message}</p>}
 			</div>
 
-			{/* {strapiError && (
+			{strapiError && (
 				<StrapiErrors
 					error={{
 						message: strapiError,
@@ -87,7 +87,7 @@ const SignInForm = () => {
 						status: '400',
 					}}
 				/>
-			)} */}
+			)}
 
 			<button type="submit" className="btn btn--primary" disabled={isLoading}>
 				{isLoading ? 'Вход...' : 'Войти'}

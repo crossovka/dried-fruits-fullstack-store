@@ -39,7 +39,8 @@
 			overflow: hidden;
 
 			&:not(:last-child) {
-				@include adaptiveValue("margin-right",
+				@include adaptiveValue(
+					'margin-right',
 					30,
 					10,
 					$containerWidth,
@@ -47,7 +48,8 @@
 					$maxWidth,
 					$containerWidth,
 					$minWidth,
-					$maxWidthContainer);
+					$maxWidthContainer
+				);
 			}
 		}
 

@@ -45,7 +45,8 @@
 }
 
 // Адаптивное свойство (clamp)
-@mixin adaptiveValue($property,
+@mixin adaptiveValue(
+	$property,
 	$startSize,
 	$minSize,
 	$widthFrom,
@@ -54,7 +55,8 @@
 	$containerWidth,
 	$minWidth,
 	$maxWidthContainer,
-	$keepSize: 0) {
+	$keepSize: 0
+) {
 	@if ($startSize ==0) {
 		$startSize: 0.000001;
 	}
@@ -83,7 +85,7 @@
 		$yIntersection: 0.000001;
 	}
 
-	$flyValue: #{rem($yIntersection)}' + '#{$slope * 100}vw;
+	$flyValue: #{rem($yIntersection)}' + ' #{$slope * 100}vw;
 
 	// Значение свойства по умолчанию
 	$propertyValue: clamp(#{rem($minSize)}, #{$flyValue}, #{rem($startSize)});
@@ -100,7 +102,10 @@
 
 	// Fallback через calc
 	@supports not (#{$property}: $propertyValue) {
-		#{$property}: calc(#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+		#{$property}: calc(
+			#{rem($minSize)} + #{$addSize} * (100vw - #{rem($widthTo)}) /
+				#{math.div($widthFrom, 16) - math.div($widthTo, 16)}
+		);
 	}
 
 	// Ограничения по min/max

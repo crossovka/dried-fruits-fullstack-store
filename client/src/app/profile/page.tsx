@@ -1,3 +1,5 @@
+'use client'
+
 import { logout } from '@/data/actions/auth-actions'
 import { fetchMyOrders } from '@/data/actions/profile-actions'
 import { useRouter } from 'next/navigation'

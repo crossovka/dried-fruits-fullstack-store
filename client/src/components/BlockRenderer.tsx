@@ -1,4 +1,12 @@
-import { Contacts, Heading, HeroSection, ImageBlock, Paragraph, ParagraphWithImage, ProductsBlock } from './blocks'
+import {
+	Contacts,
+	Heading,
+	HeroSection,
+	ImageBlock,
+	Paragraph,
+	ParagraphWithImage,
+	ProductsBlock,
+} from './blocks'
 
 import type {
 	Block,
@@ -8,6 +16,7 @@ import type {
 	ImageBlockProps,
 	ParagraphProps,
 	ParagraphWithImageProps,
+	ProductsProps,
 } from '@/types/types'
 
 function blockRenderer(block: Block, index: number) {

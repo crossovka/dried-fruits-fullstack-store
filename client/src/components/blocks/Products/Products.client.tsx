@@ -19,7 +19,12 @@ interface ProductsProps {
 	perPage: number
 }
 
-export default function ProductsClient({ title, categories, initialProducts, perPage }: ProductsProps) {
+export default function ProductsClient({
+	title,
+	categories,
+	initialProducts,
+	perPage,
+}: ProductsProps) {
 	const [activeCategory, setActiveCategory] = useState('all')
 	const [products, setProducts] = useState(initialProducts)
 
@@ -35,7 +40,7 @@ export default function ProductsClient({ title, categories, initialProducts, per
 	return (
 		<div className={styles.products}>
 			<div className={styles.products__container}>
-				<Heading text={title} level="h1" isCentered id="products-heading" />
+				<Heading text={title} level="h1" isCentered id={1} />
 				<Tabs
 					categories={categories}
 					activeCategory={activeCategory}

@@ -4,15 +4,17 @@
 @use '@/sass/base/mixins' as *;
 
 .products-page {
-
 	// .products-page__container
-	&__container {}
+	&__container {
+	}
 
 	// .products-page__heading
-	&__heading {}
+	&__heading {
+	}
 
 	// .products-page__main
-	&__main {}
+	&__main {
+	}
 }
 
 .products-page-main {
@@ -61,10 +63,12 @@
 	}
 
 	// .products-page-main__search
-	&__search {}
+	&__search {
+	}
 
 	// .products-page-main__pagination
-	&__pagination {}
+	&__pagination {
+	}
 
 	// .products-page-main__list
 	&__list {

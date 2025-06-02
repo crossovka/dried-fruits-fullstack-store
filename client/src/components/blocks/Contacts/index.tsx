@@ -12,7 +12,7 @@ export const Contacts: React.FC<ContactsProps> = ({ title, image }) => {
 	return (
 		<section className={styles.contacts}>
 			<div className={styles.contacts__container}>
-				<Heading text={title} isCentered level={2} id={0} />
+				<Heading text={title} isCentered level={'h2'} id={0} />
 				<div className={styles.contacts__wrap}>
 					<div className={styles.contacts__contactsForm}>
 						<ContactsForm />

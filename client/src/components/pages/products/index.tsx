@@ -36,9 +36,9 @@ export default function Products({
 			const categorySlug = searchQuery
 				? undefined
 				: activeCategory === 'all'
-				? undefined
-				: activeCategory
-	
+					? undefined
+					: activeCategory
+
 			const fetched = await getProducts(categorySlug, searchQuery, currentPage, PRODUCTS_PER_PAGE)
 			setProducts(fetched.items)
 			setTotalPages(fetched.pagination.pageCount)

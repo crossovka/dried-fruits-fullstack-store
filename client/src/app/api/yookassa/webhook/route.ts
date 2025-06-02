@@ -3,13 +3,6 @@
 // статус оплаты поменяется в базе Strapi и будет актуален.
 import { getStrapiURL } from '@/utils/get-strapi-url'
 import { NextResponse } from 'next/server'
-// @ts-ignore
-import YooKassa from 'yookassa'
-
-const yooKassa = new YooKassa({
-	shopId: process.env.YOOKASSA_SHOP_ID!,
-	secretKey: process.env.YOOKASSA_SECRET_KEY!,
-})
 
 export async function POST(req: Request) {
 	try {

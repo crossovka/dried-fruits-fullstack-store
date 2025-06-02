@@ -1,4 +1,4 @@
-import { getAuthToken } from '@/data/services/get-token'
+// import { getAuthToken } from '@/data/services/get-token'
 import { getUserMeLoader } from '@/data/services/get-user-me-loader'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -11,12 +11,13 @@ export async function middleware(request: NextRequest) {
 
 	try {
 		// Получаем токен
-		const token = await getAuthToken()
+		// const token = await getAuthToken()
 		// console.log('🔑 JWT Token:', token ? 'Есть' : 'Нет')
 
 		// Загружаем пользователя с токеном
 		// console.log('🔍 Запускаем getUserMeLoader')
-		const user = await getUserMeLoader(token)
+		// const user = await getUserMeLoader(token)
+		const user = await getUserMeLoader()
 
 		// console.log('✅ Получен user:', user)
 
@@ -29,7 +30,7 @@ export async function middleware(request: NextRequest) {
 
 		// console.log('✅ Доступ разрешен')
 		return NextResponse.next()
-	} catch (error) {
+	} catch {
 		// console.error('❌ Ошибка в middleware:', error)
 		return NextResponse.next() // Не блокируем запрос
 	}
