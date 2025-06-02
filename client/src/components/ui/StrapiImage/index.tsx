@@ -1,4 +1,3 @@
-import { getStrapiMediaURL } from '@/utils/get-strapi-url'
 import Image from 'next/image'
 
 interface StrapiImageProps {
@@ -8,6 +7,22 @@ interface StrapiImageProps {
 	[key: string]: string | number | boolean | undefined
 }
 
+// Функция для корректного формирования полного URL картинки из Strapi
+export function getStrapiMediaURL(path: string = ''): string {
+	if (!path) return ''
+
+	// Если путь уже полный URL, возвращаем как есть
+	if (path.startsWith('http://') || path.startsWith('https://')) {
+		return path
+	}
+
+	// Иначе добавляем базовый URL Strapi из env
+	const strapiUrl = process.env.SERVER_URL || 'http://localhost:1337'
+
+	// Добавляем слэш между базовым URL и путем, если нужно
+	return `${strapiUrl}${path.startsWith('/') ? '' : '/'}${path}`
+}
+
 export function StrapiImage({ src, alt, className, ...rest }: Readonly<StrapiImageProps>) {
 	const imageUrl = getStrapiMediaURL(src)
 	if (!imageUrl) return null
@@ -15,9 +30,11 @@ export function StrapiImage({ src, alt, className, ...rest }: Readonly<StrapiIma
 	return <Image src={imageUrl} alt={alt} className={className} loading="lazy" {...rest} />
 }
 
+// Если нужна функция для работы с URL (где иногда приходит полный URL, иногда — относительный)
 export function getStrapiMedia(url: string | null) {
-	if (url == null) return null
+	if (!url) return null
 	if (url.startsWith('data:')) return url
-	if (url.startsWith('http') || url.startsWith('//')) return url
-	return getStrapiMediaURL(url) // Используем функцию getStrapiURL для добавления базового пути
+	if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('//')) return url
+
+	return getStrapiMediaURL(url)
 }
