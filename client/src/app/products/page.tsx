@@ -1,5 +1,6 @@
 import { getCategories, getProducts } from '@/data/loaders'
 
+import { Heading } from '@/components/blocks'
 import Products from '@/components/pages/products'
 
 export default async function ProductsPage() {
@@ -11,7 +12,7 @@ export default async function ProductsPage() {
 	return (
 		<div className="products-page">
 			<div className="products-page__container">
-				<h1 className="products-page__heading heading heading--centered">Наш ассортимент</h1>
+				<Heading text={'Наш ассортимент'} isCentered level={'h1'} id={0} />
 				<Products
 					categories={categories}
 					initialProducts={initialProducts}

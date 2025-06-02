@@ -28,7 +28,7 @@
 	// .products-page-main__tabs
 	&__tabs {
 		@media (min-width: $pc) {
-			flex: 1 0 400px;
+			flex: 1 1 400px;
 			display: flex;
 			flex-direction: column;
 			gap: rem(14);
