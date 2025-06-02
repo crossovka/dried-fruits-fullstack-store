@@ -6,7 +6,6 @@ import { cache } from 'react'
 
 import { Category, PaginationMeta, Product } from '@/types/types'
 
-
 // Формируем правильный запрос с параметрами для заполнения блоков
 const homePageQuery = qs.stringify(
 	{
@@ -147,7 +146,7 @@ export async function getProducts(
 	page: number = 1,
 	perPage: number = 2, // Уменьшаем количество товаров на страницу
 ): Promise<{ items: Product[]; pagination: PaginationMeta }> {
-	const url = new URL('/api/products', BASE_URL)
+	const url = new URL('/api/products', getStrapiURL())
 
 	url.search = qs.stringify(
 		{
