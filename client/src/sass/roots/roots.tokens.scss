@@ -47,17 +47,18 @@
 
 	--main-section-paddings: 70px;
 
-	@media (max-width: $tablet) {
+	@media (max-width: #{$tablet}) {
 		--main-section-paddings: 50px;
 	}
 
-	@media (max-width: $mobile) {
+	@media (max-width: #{$mobile}) {
 		--main-section-paddings: 40px;
 	}
 
-	@media (max-width: $mobileSmall) {
+	@media (max-width: #{$mobileSmall}) {
 		--main-section-paddings: 30px;
 	}
+
 
 	// чтобы слепить 2 секции
 	// margin-top: calc(var(--main-section-paddings) * -2)
