@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { Header } from '@/components/_layout'
 
 import '../sass/main.scss'
+import '../sass/roots/roots.tokens.scss'
 
 import { Block } from '@/types/types'
 

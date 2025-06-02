@@ -1,6 +1,6 @@
 @use './roots.variables' as *;
 
-:global(:root) {
+:root {
 	--main-color: #ffffff;
 	--secondary-color: rgba(83, 141, 255, 0.05);
 	--accent-color: #feb302;

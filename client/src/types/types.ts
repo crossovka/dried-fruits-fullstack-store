@@ -142,3 +142,22 @@ export interface Product {
 }
 
 export type Products = Product[]
+
+export interface OrderItem {
+	title: string
+	quantity: number
+	price: number
+	selectedWeight?: {
+		value: number | string
+		unit: string
+	}
+}
+
+export interface Order {
+	id: number | string
+	createdAt: string
+	orderStatus: string
+	address: string
+	totalPrice: number
+	items: OrderItem[]
+}

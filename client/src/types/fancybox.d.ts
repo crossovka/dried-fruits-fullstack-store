@@ -1,5 +1,8 @@
 declare module 'fancybox' {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const fancybox: any
+	const fancybox: {
+		open: (...args: unknown[]) => void
+		close: () => void
+		[key: string]: unknown
+	}
 	export default fancybox
 }

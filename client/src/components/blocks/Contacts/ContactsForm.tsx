@@ -21,7 +21,7 @@ const schema = yup
 	})
 	.required()
 
-type FormValues = {
+export type FormValues = {
 	name: string
 	phone: string
 	message: string
@@ -54,11 +54,9 @@ const ContactsForm: React.FC = () => {
 
 			// Очищаем форму
 			reset()
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		} catch (error: any) {
+		} catch (error) {
 			console.error('Ошибка при отправке формы:', error)
 
-			// Отображаем уведомление об ошибке
 			toast.error('Произошла ошибка при подписке. Попробуйте снова.', {
 				position: 'top-right',
 				autoClose: 3000,

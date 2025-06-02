@@ -1,21 +1,28 @@
-'use client'
-
 import { logout } from '@/data/actions/auth-actions'
 import { fetchMyOrders } from '@/data/actions/profile-actions'
 import { useRouter } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
 
+import { Order } from '@/types/types'
+
 export default function Profile() {
 	const router = useRouter()
-	const [orders, setOrders] = useState<any[]>([])
+	const [orders, setOrders] = useState<Order[]>([])
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
 		const loadOrders = async () => {
 			const { data, error } = await fetchMyOrders()
-			if (error) console.error(error)
-			if (data) setOrders(data)
+			if (error) {
+				console.error(error)
+				setLoading(false)
+				return
+			}
+			// Приводим данные к типу Order[], если возможно
+			if (data && Array.isArray(data)) {
+				setOrders(data as Order[])
+			}
 			setLoading(false)
 		}
 
@@ -58,7 +65,7 @@ export default function Profile() {
 							<details>
 								<summary>Товары ({order.items.length})</summary>
 								<ul>
-									{order.items.map((item: any, i: number) => (
+									{order.items.map((item, i) => (
 										<li key={i}>
 											{item.title} — {item.quantity} шт. по {item.price} ₽ (
 											{item.selectedWeight?.value}

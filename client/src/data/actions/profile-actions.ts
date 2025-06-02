@@ -1,29 +1,7 @@
 'use client'
 
-export type OrderStatus = 'created' | 'paid' | 'shipped' | 'delivered' | 'cancelled'
+import { Order } from '@/types/types'
 
-export interface Order {
-	id: number
-	attributes: {
-		totalPrice: number
-		address: string
-		orderStatus: OrderStatus
-		created: string // ISO формат даты, например: "2025-05-31T12:34:56.789Z"
-		updated?: string
-		items: any[] // если у items есть структура — опиши отдельно
-		paymentInfo: any // если структура известна — опиши
-		user?: {
-			data: {
-				id: number
-				attributes: {
-					username: string
-					email: string
-					// другие поля пользователя, если нужно
-				}
-			}
-		}
-	}
-}
 export async function fetchMyOrders(): Promise<{
 	data?: Order[]
 	error?: string

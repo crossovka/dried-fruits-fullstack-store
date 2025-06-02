@@ -1,5 +1,7 @@
 import { getStrapiURL } from '@/utils/get-strapi-url'
 
+import { FormValues } from '@/components/blocks/Contacts/ContactsForm'
+
 export async function contactsService(data: FormValues) {
 	const url = new URL('/api/contacts', getStrapiURL())
 
@@ -22,8 +24,7 @@ export async function contactsService(data: FormValues) {
 		}
 
 		return await response.json()
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	} catch (error: any) {
+	} catch (error) {
 		console.error('Contacts Service Error:', error)
 		throw error
 	}

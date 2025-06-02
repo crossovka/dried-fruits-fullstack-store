@@ -1,8 +1,10 @@
 @use '@/sass/roots/roots.variables' as *;
-@use '@/sass/roots/roots.tokens' as *;
+// @use '@/sass/roots/roots.tokens' as *;
+
 @use '@/sass/base/mixins' as *;
 
 .product-page {
+
 	// .product-page__container
 	&__container {
 		display: flex;
