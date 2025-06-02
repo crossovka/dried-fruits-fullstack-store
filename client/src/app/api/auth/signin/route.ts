@@ -1,13 +1,11 @@
 import { getStrapiURL } from '@/utils/get-strapi-url'
 import { NextResponse } from 'next/server'
 
-const BASE_URL = getStrapiURL()
-
 export async function POST(req: Request) {
 	try {
 		const { identifier, password } = await req.json()
 
-		const response = await fetch(`${BASE_URL}auth/local`, {
+		const response = await fetch(`${getStrapiURL()}auth/local`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ identifier, password }),
