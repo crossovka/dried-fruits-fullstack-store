@@ -6,7 +6,6 @@ import { cache } from 'react'
 
 import { Category, PaginationMeta, Product } from '@/types/types'
 
-const BASE_URL = getStrapiURL()
 
 // Формируем правильный запрос с параметрами для заполнения блоков
 const homePageQuery = qs.stringify(
@@ -22,7 +21,7 @@ const homePageQuery = qs.stringify(
 
 // export async function getHomePage() {
 // 	const path = '/api/home-page';
-// 	const url = new URL(path, BASE_URL);
+// 	const url = new URL(path, getStrapiURL());
 // 	url.search = homePageQuery;
 
 // 	try {
@@ -41,7 +40,7 @@ const homePageQuery = qs.stringify(
 
 export const getCachedHomePage = cache(async function getCachedHomePage() {
 	const path = '/api/home-page'
-	const url = new URL(path, BASE_URL)
+	const url = new URL(path, getStrapiURL())
 	url.search = homePageQuery
 
 	try {
@@ -75,7 +74,7 @@ const pageBySlugQuery = (slug: string) =>
 
 export async function getPageBySlug(slug: string) {
 	const path = '/api/pages'
-	const url = new URL(path, BASE_URL)
+	const url = new URL(path, getStrapiURL())
 	url.search = pageBySlugQuery(slug)
 
 	try {
@@ -105,7 +104,7 @@ const globalSettingQuery = qs.stringify(
 
 export async function getGlobalSettings() {
 	const path = '/api/global'
-	const url = new URL(path, BASE_URL)
+	const url = new URL(path, getStrapiURL())
 	url.search = globalSettingQuery
 
 	try {
@@ -125,7 +124,7 @@ export async function getGlobalSettings() {
 // Функция для получения категорий
 export async function getCategories(): Promise<Category[]> {
 	const path = '/api/categories'
-	const url = new URL(path, BASE_URL)
+	const url = new URL(path, getStrapiURL())
 
 	try {
 		const response = await fetchAPI(url.href, {
@@ -196,7 +195,7 @@ export async function getProducts(
 // Функция для получения продукта по слагу
 export async function getProductBySlug(slug: string): Promise<Product | null> {
 	const path = `/api/products`
-	const url = new URL(path, BASE_URL)
+	const url = new URL(path, getStrapiURL())
 
 	url.search = qs.stringify(
 		{
