@@ -98,11 +98,11 @@
 
 // Плавный скролл
 %smoothscroll {
+	-webkit-overflow-scrolling: touch;
+
 	@media (prefers-reduced-motion: no-preference) {
 		scroll-behavior: smooth;
 	}
-
-	-webkit-overflow-scrolling: touch;
 }
 
 // Скрыть скролл

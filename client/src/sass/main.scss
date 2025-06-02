@@ -1,11 +1,22 @@
 @use 'sass:math';
+@use './roots/roots.variables' as *;
+@use './roots/roots.tokens';
 @use './base/mixins' as *;
-@use './roots' as *;
 
 // Базовые стили
-@import 'base/null';
-@import 'base/typography';
-@import 'base/base';
+@use 'base/null';
+@use 'base/typography';
+@use 'base/base';
+
+// forms
+@use 'components/forms/forms.scss';
+@use 'components/forms/auth-forms.scss';
+
+// pages
+@use 'pages/products-page.scss';
+@use 'pages/product-page.scss';
+@use 'pages/cart.scss';
+@use 'pages/auth.scss';
 
 /*
 (i) Стили будут применяться ко 
@@ -34,11 +45,11 @@
 // 	outline: 4px solid purple !important;
 // }
 
-html {
+// html {
 	// @extend %smoothscroll;
 	// scroll-behavior: smooth;
 	// -webkit-overflow-scrolling: touch;
-}
+// }
 
 body {
 	min-height: 100vh;
@@ -90,13 +101,3 @@ body {
 [data-fancybox] {
 	cursor: zoom-in;
 }
-
-// forms
-@import 'components/forms/forms.scss';
-@import 'components/forms/auth-forms.scss';
-
-// pages
-@import 'pages/products-page.scss';
-@import 'pages/product-page.scss';
-@import 'pages/cart.scss';
-@import 'pages/auth.scss';

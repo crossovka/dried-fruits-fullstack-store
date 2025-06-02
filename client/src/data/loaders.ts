@@ -50,7 +50,7 @@ export const getCachedHomePage = cache(async function getCachedHomePage() {
 			next: { revalidate: 60 }, // Кэширование на 60 секунд
 		})
 
-		console.log('Home page response:', response)
+		// console.log('Home page response:', response)
 		return response
 	} catch (error) {
 		console.error('Error fetching home page data:', error)
@@ -84,7 +84,7 @@ export async function getPageBySlug(slug: string) {
 			next: { revalidate: 60 },
 		})
 
-		console.log(`[getPageBySlug] Response for slug "${slug}":`, response)
+		// console.log(`[getPageBySlug] Response for slug "${slug}":`, response)
 		return response
 	} catch (error) {
 		console.error(`Error fetching page data for slug "${slug}":`, error)
@@ -114,7 +114,7 @@ export async function getGlobalSettings() {
 			next: { revalidate: 60 },
 		})
 
-		console.log('getGlobalSettings Response:', response)
+		// console.log('getGlobalSettings Response:', response)
 		return response
 	} catch (error) {
 		console.error('API Fetch Error:', error)
@@ -133,7 +133,7 @@ export async function getCategories(): Promise<Category[]> {
 			next: { revalidate: 60 },
 		})
 
-		console.log('Категории:', response.data)
+		// console.log('Категории:', response.data)
 		return response.data
 	} catch (error) {
 		console.error('Ошибка при получении категорий:', error)
@@ -166,8 +166,8 @@ export async function getProducts(
 		{ encode: false },
 	)
 
-	console.log('Fetching products:', { categorySlug, query, page, perPage })
-	console.log('Generated URL:', url.href)
+	// console.log('Fetching products:', { categorySlug, query, page, perPage })
+	// console.log('Generated URL:', url.href)
 
 	try {
 		const response = await fetchAPI(url.href, {
@@ -217,7 +217,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 			return null
 		}
 
-		console.log('Server Response getProductBySlug:', response)
+		// console.log('Server Response getProductBySlug:', response)
 		return response.data[0]
 	} catch (error) {
 		console.error('Error fetching product getProductBySlug:', error)

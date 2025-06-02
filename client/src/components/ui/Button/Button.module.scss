@@ -1,4 +1,5 @@
-@use '@/sass/roots' as *;
+@use '@/sass/roots/roots.variables' as *;
+@use '@/sass/roots/roots.tokens' as *;
 @use '@/sass/base/mixins' as *;
 
 .btn {

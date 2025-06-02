@@ -1,4 +1,5 @@
-@use '@/sass/roots' as *;
+@use '@/sass/roots/roots.variables' as *;
+@use '@/sass/roots/roots.tokens' as *;
 @use '@/sass/base/mixins' as *;
 
 .product-card {
@@ -79,10 +80,8 @@
 		}
 	}
 
-	&__weights {
-	}
+	&__weights {}
 
 	// .product-card__add-to-cart
-	&__add-to-cart {
-	}
+	&__add-to-cart {}
 }

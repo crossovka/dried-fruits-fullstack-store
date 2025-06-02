@@ -1,3 +1,6 @@
+@use '@/sass/roots/roots.variables' as *;
+@use '@/sass/base/mixins' as *;
+
 // Заголовки с адаптивным font-size
 h1,
 .h1 {

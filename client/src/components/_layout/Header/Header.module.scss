@@ -1,4 +1,5 @@
-@use '@/sass/roots' as *;
+@use '@/sass/roots/roots.variables' as *;
+@use '@/sass/roots/roots.tokens' as *;
 @use '@/sass/base/mixins' as *;
 
 .header {
@@ -42,8 +43,7 @@
 	}
 
 	// .header__left
-	&__left {
-	}
+	&__left {}
 
 	// .header__right
 	&__right {
@@ -185,9 +185,8 @@
 			pointer-events: none;
 
 			transform: translateX(100%);
-			transition:
-				transform 0.3s ease-in-out,
-				opacity 0.3s ease-in-out;
+			transition: transform 0.3s ease-in-out,
+			opacity 0.3s ease-in-out;
 
 			// Когда меню открыто
 			.menu-open & {

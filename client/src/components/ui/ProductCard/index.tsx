@@ -19,7 +19,7 @@ type ProductCardProps = {
 export default function ProductCard({ product }: ProductCardProps) {
 	const { addItem } = useActions()
 
-	console.log('PRODUCT DATA:', product)
+	// console.log('PRODUCT DATA:', product)
 
 	const hasWeights = product.weightVariants && product.weightVariants.length > 0
 
