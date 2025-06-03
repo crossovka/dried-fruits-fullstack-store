@@ -17,7 +17,7 @@
     },
     "description": {
       "type": "string",
-      "required": false
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -34,6 +34,25 @@
         "blocks.image",
         "blocks.contacts"
       ]
+    },
+    "keywords": {
+      "type": "text"
+    },
+    "robots": {
+      "type": "enumeration",
+      "enum": [
+        "index, follow",
+        "noindex, nofollow",
+        "noindex, follow",
+        "index, nofollow"
+      ],
+      "default": "index, follow",
+      "required": true
+    },
+    "canonicalUrl": {
+      "type": "string",
+      "default": "https://yourdomain.com/",
+      "required": true
     }
   }
 }

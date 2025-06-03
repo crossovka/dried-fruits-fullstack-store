@@ -26,6 +26,13 @@ export async function generateMetadata({
 		return {
 			title: data.title || 'Страница',
 			description: data.description || 'Описание отсутствует',
+			keywords: data.keywords
+				? data.seoKeywords.split(',').map((kw: string) => kw.trim())
+				: undefined,
+			alternates: {
+				canonical: data.canonicalUrl || `http://localhost:3000/${slug}`,
+			},
+			robots: data.robots || undefined,
 		}
 	} catch {
 		return {
