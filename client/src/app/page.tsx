@@ -13,10 +13,24 @@ async function loader() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-	const { title, description } = await getCachedHomePage()
+	const data = await getCachedHomePage()
+
+	if (!data) {
+		return {
+			title: 'Главная страница',
+			description: 'Описание отсутствует',
+			robots: 'noindex, nofollow',
+		}
+	}
+
 	return {
-		title,
-		description,
+		title: data.title || 'Главная страница',
+		description: data.description || 'Описание отсутствует',
+		robots: data.robots || 'index, follow',
+		other: data.keywords && data.keywords.trim() !== '' ? { keywords: data.keywords } : undefined,
+		alternates: {
+			canonical: data.canonicalUrl || 'https://localhost:3000/',
+		},
 	}
 }
 

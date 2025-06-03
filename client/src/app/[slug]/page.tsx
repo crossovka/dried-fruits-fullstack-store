@@ -23,21 +23,26 @@ export async function generateMetadata({
 
 	try {
 		const data = await loader(slug)
+
 		return {
 			title: data.title || 'Страница',
 			description: data.description || 'Описание отсутствует',
-			keywords: data.keywords
-				? data.seoKeywords.split(',').map((kw: string) => kw.trim())
-				: undefined,
 			alternates: {
-				canonical: data.canonicalUrl || `http://localhost:3000/${slug}`,
+				canonical: data.canonicalUrl || `https://localhost:3000/${slug}`,
 			},
-			robots: data.robots || undefined,
+			robots: data.robots || 'index, follow',
+			other:
+				data.keywords && data.keywords.trim() !== ''
+					? {
+							keywords: data.keywords,
+						}
+					: undefined,
 		}
 	} catch {
 		return {
 			title: 'Страница не найдена',
 			description: 'Такой страницы не существует',
+			robots: 'noindex, nofollow',
 		}
 	}
 }

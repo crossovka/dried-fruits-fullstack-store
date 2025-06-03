@@ -26,6 +26,24 @@
         "blocks.paragraph",
         "blocks.products"
       ]
+    },
+    "keywords": {
+      "type": "text",
+      "required": true
+    },
+    "canonicalUrl": {
+      "type": "string",
+      "required": true,
+      "default": "https://yourdomain.com/ "
+    },
+    "robots": {
+      "type": "enumeration",
+      "enum": [
+        "index, follow",
+        "noindex, nofollow",
+        "noindex, follow",
+        "index, nofollow"
+      ]
     }
   }
 }
