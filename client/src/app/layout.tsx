@@ -1,5 +1,6 @@
 import { getGlobalSettings } from '@/data/loaders'
 import { StoreProvider, ToastProvider } from '@/providers'
+
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import { notFound } from 'next/navigation'

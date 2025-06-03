@@ -1,4 +1,5 @@
 export * from './Button'
+export * from './CartItem'
 export * from './Fancybox'
 export * from './Loader'
 export * from './Pagination'

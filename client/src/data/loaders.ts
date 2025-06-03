@@ -175,7 +175,7 @@ export async function getProducts(
 
 	// console.log('Fetching products:', { categorySlug, query, page, perPage })
 	// console.log('Generated URL:', url.href)
-	
+
 	try {
 		const response = await fetchAPI(url.href, {
 			method: 'GET',

@@ -1,4 +1,5 @@
 import { getStrapiURL } from '@/utils/get-strapi-url'
+
 import { NextResponse } from 'next/server'
 
 export async function GET(req: Request) {

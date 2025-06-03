@@ -2,10 +2,11 @@
 
 import { signUp } from '@/data/actions/auth-actions'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import * as yup from 'yup'
+
+import { useRouter } from 'next/navigation'
 
 import { useState } from 'react'
 

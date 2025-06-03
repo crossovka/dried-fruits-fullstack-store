@@ -1,5 +1,6 @@
 // import { getAuthToken } from '@/data/services/get-token'
 import { getUserMeLoader } from '@/data/services/get-user-me-loader'
+
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {

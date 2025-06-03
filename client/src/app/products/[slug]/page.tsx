@@ -1,4 +1,5 @@
 import { getProductBySlug, getProducts } from '@/data/loaders'
+
 import { notFound } from 'next/navigation'
 
 import ProductClient from '@/components/pages/product'

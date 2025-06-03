@@ -11,12 +11,7 @@ type TabsProps = {
 	className?: string
 }
 
-export function Tabs({
-	categories,
-	activeCategory,
-	setActiveCategory,
-	className = '',
-}: TabsProps) {
+export function Tabs({ categories, activeCategory, setActiveCategory, className = '' }: TabsProps) {
 	return (
 		<div className={`${styles.tabs} ${className}`}>
 			<button

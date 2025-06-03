@@ -1,6 +1,7 @@
-import { NextResponse } from 'next/server'
 // @ts-expect-error: yookassa has no default export
 import YooKassa from 'yookassa'
+
+import { NextResponse } from 'next/server'
 
 const shopId = process.env.YOOKASSA_SHOP_ID!
 const secretKey = process.env.YOOKASSA_SECRET_KEY!

@@ -1,4 +1,5 @@
 import { getPageBySlug } from '@/data/loaders'
+
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 

@@ -1,5 +1,6 @@
 import { getStrapiURL } from '@/utils/get-strapi-url'
 import { decodeJwt } from 'jose'
+
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {

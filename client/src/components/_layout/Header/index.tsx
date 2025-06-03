@@ -1,15 +1,17 @@
 'use client'
 
-import { selectCartItems } from '@/store/cart/cart.selectors'
-import { CartItem } from '@/store/cart/cart.types'
-import { useAppSelector } from '@/store/store'
 import { formatPhoneNumber } from '@/utils/formatPhoneNumber'
 // импорт стилей модуля
 import clsx from 'clsx'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
+
+import { selectCartItems } from '@/store/cart/cart.selectors'
+import { CartItem } from '@/store/cart/cart.types'
+import { useAppSelector } from '@/store/store'
 
 import ProfileIcon from '@/components/icons/ProfileIcon'
 import { StrapiImage } from '@/components/ui/StrapiImage'
