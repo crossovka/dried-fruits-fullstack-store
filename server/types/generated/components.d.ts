@@ -96,7 +96,7 @@ export interface BlocksProducts extends Struct.ComponentSchema {
       Schema.Attribute.DefaultTo<5>;
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'\u041D\u0430\u0449 \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442'>;
+      Schema.Attribute.DefaultTo<'\u041D\u0430\u0448 \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442'>;
   };
 }
 

@@ -16,7 +16,7 @@ type ProductCardProps = {
 	product: Product
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
 	const { addItem } = useActions()
 
 	// console.log('PRODUCT DATA:', product)

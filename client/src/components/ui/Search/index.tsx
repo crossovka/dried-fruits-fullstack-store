@@ -11,7 +11,7 @@ interface SearchProps {
 	className?: string
 }
 
-export default function Search({ setSearchQuery, className = '' }: SearchProps) {
+export function Search({ setSearchQuery, className = '' }: SearchProps) {
 	const [query, setQuery] = useState('')
 	const debouncedQuery = useDebounce(query, 500)
 

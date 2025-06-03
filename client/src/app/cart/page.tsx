@@ -9,7 +9,7 @@ import { toast } from 'react-toastify'
 
 import React, { useState } from 'react'
 
-import { StrapiImage } from '@/components/ui/StrapiImage'
+import { StrapiImage } from '@/components/ui'
 
 export default function CartPage() {
 	const dispatch = useAppDispatch()

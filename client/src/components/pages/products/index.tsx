@@ -4,10 +4,7 @@ import { getProducts } from '@/data/loaders'
 
 import { useCallback, useEffect, useState } from 'react'
 
-import Pagination from '@/components/ui/Pagination'
-import ProductCard from '@/components/ui/ProductCard'
-import Search from '@/components/ui/Search'
-import Tabs from '@/components/ui/Tabs'
+import { Pagination, ProductCard, Search, Tabs } from '@/components/ui'
 
 import type { Category, Product } from '@/types/types'
 

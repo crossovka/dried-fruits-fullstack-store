@@ -1,11 +1,15 @@
 # Интернет магазин продуктов
 
 ## Описание проекта
+
 - strapi cms
 - Next js
 - yookassa
 
 ---
+
+https://dried-fruits-fullstack-store.vercel.app/
+https://pleasant-purpose-d574ad195c.strapiapp.com/admin/
 
 ## Контакты
 
@@ -28,7 +32,3 @@
 ![alt text](./imgs/8.png)
 ![alt text](./imgs/9.png)
 ![alt text](./imgs/10.png)
-
-Vyacheslav Tchekasin
-best-login-mail@yandex.ru
-Monkey123

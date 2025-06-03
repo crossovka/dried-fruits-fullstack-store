@@ -11,7 +11,7 @@ type TabsProps = {
 	className?: string
 }
 
-export default function Tabs({
+export function Tabs({
 	categories,
 	activeCategory,
 	setActiveCategory,
