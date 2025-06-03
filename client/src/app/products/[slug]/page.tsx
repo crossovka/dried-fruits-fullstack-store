@@ -5,11 +5,12 @@ import { notFound } from 'next/navigation'
 import ProductPage from '@/components/pages/product'
 
 interface ProductPageProps {
-	params: { slug: string }
+	params: Promise<{ slug: string }>
 }
 
 export default async function Page({ params }: ProductPageProps) {
-	const product = await getProductBySlug(params.slug)
+	const { slug } = await params
+	const product = await getProductBySlug(slug)
 
 	if (!product) notFound()
 
