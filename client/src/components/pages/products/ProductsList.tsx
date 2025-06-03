@@ -20,7 +20,7 @@ export default function ProductsList({
 	const {
 		activeCategory,
 		setActiveCategory,
-		searchQuery,
+		// searchQuery,
 		setSearchQuery,
 		currentPage,
 		setCurrentPage,
@@ -42,7 +42,7 @@ export default function ProductsList({
 			<div className="products-page__wrap">
 				<div className="products-page-main__controls">
 					<Search
-						value={searchQuery}
+						// value={searchQuery}
 						setSearchQuery={setSearchQuery}
 						className="products-page-main__search"
 					/>
