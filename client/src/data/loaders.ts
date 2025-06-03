@@ -151,7 +151,13 @@ export async function getProducts(
 	const filters: Record<string, any> = {}
 
 	if (query.trim()) {
-		filters.$or = [{ title: { $containsi: query } }, { description: { $containsi: query } }]
+		// Поиск нечувствительный к регистру по title и description
+		filters.$or = [
+			{ title: { $containsi: query } },
+			{ description: { $containsi: query } },
+			// Можешь добавить сюда другие поля, например:
+			// { slug: { $containsi: query } }
+		]
 	}
 
 	if (categorySlug) {
@@ -160,21 +166,20 @@ export async function getProducts(
 		}
 	}
 
-	url.search = qs.stringify(
-		{
-			sort: ['createdAt:desc'],
-			filters,
-			pagination: {
-				pageSize: perPage,
-				page,
-			},
-			populate: '*',
+	const queryObj = {
+		sort: ['createdAt:desc'],
+		filters,
+		pagination: {
+			pageSize: perPage,
+			page,
 		},
-		{ encode: false },
-	)
+		populate: '*',
+	}
 
-	// console.log('Fetching products:', { categorySlug, query, page, perPage })
-	// console.log('Generated URL:', url.href)
+	url.search = qs.stringify(queryObj) // без encode:false, чтобы qs нормально кодировал
+
+	console.log('Fetching products with params:', { categorySlug, query, page, perPage })
+	console.log('Generated URL:', url.href)
 
 	try {
 		const response = await fetchAPI(url.href, {
@@ -183,18 +188,21 @@ export async function getProducts(
 		})
 
 		if (!response.data || response.data.length === 0) {
+			console.log('No products found for query:', query)
 			return {
 				items: [],
 				pagination: { page, pageSize: perPage, pageCount: 0, total: 0 },
 			}
 		}
 
+		console.log(`Fetched ${response.data.length} products`)
+
 		return {
 			items: response.data,
 			pagination: response.meta.pagination,
 		}
 	} catch (error) {
-		console.error('Ошибка при получении продуктов:', error)
+		console.error('Error fetching products:', error)
 		throw error
 	}
 }
