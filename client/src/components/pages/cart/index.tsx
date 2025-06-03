@@ -1,9 +1,12 @@
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-import { CartItem as CartItemComponent } from '@/components/ui'
+import { Heading } from '@/components/blocks'
+import { Button } from '@/components/ui'
 
+import styles from './Cart.module.css'
+import { CartItem } from './CartItem'
 import { useCheckout } from './useCheckout'
 
 export default function CartPage() {
@@ -17,16 +20,13 @@ export default function CartPage() {
 		placeOrder,
 		loading,
 	} = useCheckout()
-
 	const [address, setAddress] = useState('')
 
-	const handleCheckout = () => {
-		placeOrder(address)
-	}
+	const handleCheckout = () => placeOrder(address)
 
 	return (
-		<div>
-			<h1>Корзина</h1>
+		<div className={styles.cart}>
+			<Heading text={'Корзина'} isCentered level={'h1'} id={2} />
 
 			{cartItems.length === 0 ? (
 				<p>Корзина пуста</p>
@@ -34,34 +34,44 @@ export default function CartPage() {
 				<>
 					<ul>
 						{cartItems.map((item) => (
-							<li key={`${item.id}-${item.selectedWeight?.value}`}>
-								<CartItemComponent
-									item={item}
-									onIncrease={() => increaseItem(item)}
-									onDecrease={() => decreaseItem(item)}
-									onRemove={() => removeItem(item)}
-								/>
-							</li>
+							<CartItem
+								key={`${item.id}-${item.selectedWeight?.value}`}
+								item={item}
+								onIncrease={() => increaseItem(item)}
+								onDecrease={() => decreaseItem(item)}
+								onRemove={() => removeItem(item)}
+							/>
 						))}
 					</ul>
 
 					<p>Итого: {totalPrice} ₽</p>
 
-					<input
-						type="text"
-						placeholder="Введите адрес доставки"
-						value={address}
-						onChange={(e) => setAddress(e.target.value)}
-						disabled={loading}
-					/>
+					<div className={styles.footer}>
+						<input
+							type="text"
+							placeholder="Введите адрес доставки"
+							value={address}
+							onChange={(e) => setAddress(e.target.value)}
+							disabled={loading}
+							className={styles.input}
+						/>
 
-					<button onClick={handleCheckout} disabled={loading}>
-						{loading ? 'Оформление...' : 'Оформить заказ'}
-					</button>
+						<div className={styles.actions}>
+							<Button onClick={handleCheckout} disabled={loading} theme="primary" size="medium">
+								{loading ? 'Оформление...' : 'Оформить заказ'}
+							</Button>
 
-					<button onClick={clearCart} disabled={loading}>
-						Очистить корзину
-					</button>
+							<Button
+								onClick={clearCart}
+								disabled={loading}
+								theme="secondary"
+								size="medium"
+								className={styles.clearCartBtn}
+							>
+								Очистить корзину
+							</Button>
+						</div>
+					</div>
 				</>
 			)}
 		</div>

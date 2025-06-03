@@ -1,0 +1,67 @@
+.cart {
+	max-width: 800px;
+	margin: 20px auto;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart h1 {
+	text-align: center;
+}
+
+.cart ul {
+	padding: 0;
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+.footer {
+	display: flex;
+	flex-direction: column;
+
+	text-align: center;
+	margin-top: 20px;
+}
+
+.input {
+	margin-bottom: 20px;
+	width: 100%;
+	padding: 10px 15px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	transition: border-color 0.2s ease;
+}
+
+.input:focus {
+	outline: none;
+	border-color: #0070f3;
+	/* акцентный цвет */
+	box-shadow: 0 0 5px rgba(0, 112, 243, 0.5);
+}
+
+.actions {
+	display: flex;
+	justify-content: space-around;
+	gap: 20px;
+}
+
+.clearCartBtn {
+	background-color: #e53e3e;
+	/* красный */
+	color: white;
+	border: none;
+	transition: background-color 0.3s ease;
+}
+
+.clearCartBtn:hover:enabled {
+	background-color: #9b2c2c;
+	/* темнее при ховере */
+	cursor: pointer;
+}
+
+.clearCartBtn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}

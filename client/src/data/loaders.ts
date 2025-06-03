@@ -140,6 +140,18 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 // Функция для получения продуктов
+type Filters = {
+	$or?: Array<{
+		title?: { $containsi: string }
+		description?: { $containsi: string }
+		slug?: { $containsi: string }
+	}>
+	category?: {
+		slug: { $eq: string }
+	}
+	[key: string]: unknown
+}
+
 export async function getProducts(
 	categorySlug?: string,
 	query: string = '',
@@ -148,7 +160,7 @@ export async function getProducts(
 ): Promise<{ items: Product[]; pagination: PaginationMeta }> {
 	const url = new URL('/api/products', getStrapiURL())
 
-	const filters: Record<string, any> = {}
+	const filters: Filters = {}
 
 	if (query.trim()) {
 		// Поиск нечувствительный к регистру по title и description
@@ -178,8 +190,8 @@ export async function getProducts(
 
 	url.search = qs.stringify(queryObj) // без encode:false, чтобы qs нормально кодировал
 
-	console.log('Fetching products with params:', { categorySlug, query, page, perPage })
-	console.log('Generated URL:', url.href)
+	// console.log('Fetching products with params:', { categorySlug, query, page, perPage })
+	// console.log('Generated URL:', url.href)
 
 	try {
 		const response = await fetchAPI(url.href, {
@@ -188,21 +200,21 @@ export async function getProducts(
 		})
 
 		if (!response.data || response.data.length === 0) {
-			console.log('No products found for query:', query)
+			// console.log('No products found for query:', query)
 			return {
 				items: [],
 				pagination: { page, pageSize: perPage, pageCount: 0, total: 0 },
 			}
 		}
 
-		console.log(`Fetched ${response.data.length} products`)
+		// console.log(`Fetched ${response.data.length} products`)
 
 		return {
 			items: response.data,
 			pagination: response.meta.pagination,
 		}
 	} catch (error) {
-		console.error('Error fetching products:', error)
+		// console.error('Error fetching products:', error)
 		throw error
 	}
 }

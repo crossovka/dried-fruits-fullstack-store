@@ -1,25 +1,19 @@
 'use client'
 
-import Link from 'next/link'
-
 import { useEffect, useState } from 'react'
 
 import { useActions } from '@/hooks/useActions'
 
-import { Button, StrapiImage, WeightSelector } from '@/components/ui'
-
-import styles from './ProductCard.module.scss'
+import { Button, WeightSelector } from '@/components/ui'
 
 import { Product, WeightVariant } from '@/types/types'
 
-type ProductCardProps = {
+type ProductClientProps = {
 	product: Product
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export default function ProductClient({ product }: ProductClientProps) {
 	const { addItem } = useActions()
-
-	// console.log('PRODUCT DATA:', product)
 
 	const hasWeights = product.weightVariants && product.weightVariants.length > 0
 
@@ -39,36 +33,13 @@ export function ProductCard({ product }: ProductCardProps) {
 	}
 
 	return (
-		<li className={styles['product-card']}>
-			<Link href={`/products/${product.slug}`} className={`${styles['product-card__image']} -ibg`}>
-				<StrapiImage
-					src={product.image.url}
-					alt={product.image.alternativeText || product.title}
-					fill
-				/>
-			</Link>
-
-			<h3 className={`${styles['product-card__title']} link`}>
-				<Link href={`/products/${product.slug}`}>{product.title}</Link>
-			</h3>
-
-			<p className={styles['product-card__description']}>
-				<Link href={`/products/${product.slug}`}>{product.description}</Link>
-			</p>
-
-			<div className={styles['product-card__prices']}>
-				<span>{product.price} Р</span>
-				{product.old_price && (
-					<span className={styles['product-card__old-price']}>{product.old_price} Р</span>
-				)}
-			</div>
-
+		<div className="product-page__controls">
 			{hasWeights && (
 				<WeightSelector
 					weights={product.weightVariants}
 					selectedWeight={selectedWeight}
 					setSelectedWeight={setSelectedWeight}
-					className={styles['product-card__weights']}
+					className="product-page__weights"
 				/>
 			)}
 
@@ -77,6 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
 				size="medium"
 				onClick={handleAddToCart}
 				disabled={!selectedWeight || selectedWeight.stock <= 0}
+				className="product-page__add-to-cart"
 			>
 				{selectedWeight
 					? selectedWeight.stock > 0
@@ -84,6 +56,6 @@ export function ProductCard({ product }: ProductCardProps) {
 						: `Нет в наличии (${selectedWeight.value} ${selectedWeight.unit})`
 					: 'Выберите вес'}
 			</Button>
-		</li>
+		</div>
 	)
 }

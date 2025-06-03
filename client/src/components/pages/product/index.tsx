@@ -1,61 +1,41 @@
-'use client'
+import { Fancybox, StrapiImage } from '@/components/ui'
 
-import { useEffect, useState } from 'react'
+import ProductClient from './ProductClient'
 
-import { useActions } from '@/hooks/useActions'
+import { Product } from '@/types/types'
 
-import { Button, WeightSelector } from '@/components/ui'
-
-import { Product, WeightVariant } from '@/types/types'
-
-type ProductClientProps = {
+type ProductPageProps = {
 	product: Product
 }
 
-export default function ProductClient({ product }: ProductClientProps) {
-	const { addItem } = useActions()
-
-	const hasWeights = product.weightVariants && product.weightVariants.length > 0
-
-	const [selectedWeight, setSelectedWeight] = useState<WeightVariant | null>(null)
-
-	useEffect(() => {
-		if (hasWeights) {
-			setSelectedWeight(product.weightVariants[0])
-		} else {
-			setSelectedWeight(null)
-		}
-	}, [hasWeights, product.weightVariants])
-
-	const handleAddToCart = () => {
-		if (!selectedWeight || selectedWeight.stock <= 0) return
-		addItem({ ...product, quantity: 1, selectedWeight })
-	}
-
+export default function ProductPage({ product }: ProductPageProps) {
 	return (
-		<div className="product-page__controls">
-			{hasWeights && (
-				<WeightSelector
-					weights={product.weightVariants}
-					selectedWeight={selectedWeight}
-					setSelectedWeight={setSelectedWeight}
-					className="product-page__weights"
-				/>
-			)}
+		<div className="product-page">
+			<div className="product-page__container">
+				<div className="product-page__wrap">
+					<Fancybox className="product-page__image -ibg" delegate="[data-fancybox]">
+						<StrapiImage
+							src={product.image.url}
+							alt={product.image.alternativeText || product.title}
+							fill
+							data-fancybox="gallery"
+						/>
+					</Fancybox>
 
-			<Button
-				theme="primary"
-				size="medium"
-				onClick={handleAddToCart}
-				disabled={!selectedWeight || selectedWeight.stock <= 0}
-				className="product-page__add-to-cart"
-			>
-				{selectedWeight
-					? selectedWeight.stock > 0
-						? `Добавить в корзину (${selectedWeight.value} ${selectedWeight.unit})`
-						: `Нет в наличии (${selectedWeight.value} ${selectedWeight.unit})`
-					: 'Выберите вес'}
-			</Button>
+					<div className="product-page__content">
+						<h1>{product.title}</h1>
+						<p>{product.description}</p>
+						<div className="product-page__content-prices h3">
+							<span>{product.price} Р</span>
+							{product.old_price && (
+								<span className="product-page__old-price">{product.old_price} Р</span>
+							)}
+						</div>
+					</div>
+				</div>
+
+				<ProductClient product={product} />
+			</div>
 		</div>
 	)
 }

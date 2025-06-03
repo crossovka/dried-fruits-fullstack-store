@@ -1,0 +1,41 @@
+.cartItem {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.cartItemImage {
+	width: 160px;
+	height: 160px;
+	object-fit: cover;
+	border-radius: 5px;
+	position: relative;
+	/* для fill в StrapiImage */
+}
+
+.cartItemInfo {
+	flex: 1;
+	margin-left: 15px;
+}
+
+.cartItemControls {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.cartItemControls button {
+	padding: 5px 10px;
+	font-size: 18px;
+	cursor: pointer;
+	border: none;
+	background: #f0f0f0;
+	border-radius: 5px;
+	transition: 0.2s;
+}
+
+.cartItemControls button:hover {
+	background: #ddd;
+}
