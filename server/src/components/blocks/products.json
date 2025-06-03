@@ -9,7 +9,7 @@
     "title": {
       "type": "string",
       "required": true,
-      "default": "Нащ ассортимент"
+      "default": "Наш ассортимент"
     },
     "perPage": {
       "type": "integer",
