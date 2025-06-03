@@ -8,6 +8,8 @@
 @use 'base/typography';
 @use 'base/base';
 
+@use 'components/Header';
+
 // forms
 @use 'components/forms/forms.scss';
 @use 'components/forms/auth-forms.scss';

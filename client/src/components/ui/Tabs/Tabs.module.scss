@@ -4,6 +4,7 @@
 @use '@/sass/base/mixins' as *;
 
 .tabs {
+
 	// .tabs__btn
 	&__btn {
 		font-size: rem(18);
@@ -17,6 +18,11 @@
 				background: var(--btn-secondary-color);
 				color: var(--secondary-font-color);
 			}
+		}
+
+		@media (max-width: $mobile) {
+			font-size: rem(14);
+			padding: 10px 20px;
 		}
 
 		// .tabs__btn--active

@@ -68,7 +68,6 @@ export default function ProductsClient({
 					currentPage={currentPage}
 					totalPages={totalPages}
 					setCurrentPage={setCurrentPage}
-					className={styles.products__pagination}
 				/>
 			</div>
 		</div>
