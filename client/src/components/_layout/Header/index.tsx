@@ -112,7 +112,11 @@ export function Header({ data }: HeaderProps) {
 						<span className="header-right__info-item-link">{number}</span>
 					</a>
 
-					<Link href="/profile" className="header-right__profile-btn -ibg_contain">
+					<Link
+						href="/profile"
+						className="header-right__profile-btn -ibg_contain"
+						aria-label="Профиль"
+					>
 						<ProfileIcon />
 					</Link>
 
