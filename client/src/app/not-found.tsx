@@ -1,13 +1,13 @@
-import Link from 'next/link'
+import { Button } from '@/components/ui' 
 
 const NotFound = () => {
 	return (
 		<div className="h1 __container">
 			Ничего не найдено
 			<div>
-				<Link href="/">
-					<button className="btn btn--primary">На главную</button>
-				</Link>
+				<Button href="/" theme="primary">
+					На главную
+				</Button>
 			</div>
 		</div>
 	)
