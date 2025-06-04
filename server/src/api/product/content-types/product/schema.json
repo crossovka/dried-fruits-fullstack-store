@@ -50,6 +50,20 @@
       "repeatable": true,
       "component": "product.weight-variant",
       "required": true
+    },
+    "keywords": {
+      "type": "text"
+    },
+    "robots": {
+      "type": "enumeration",
+      "enum": [
+        "index, follow",
+        "noindex, nofollow",
+        "noindex, follow",
+        "index, nofollow"
+      ],
+      "required": false,
+      "default": "index, follow"
     }
   }
 }

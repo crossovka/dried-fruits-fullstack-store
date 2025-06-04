@@ -600,6 +600,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
+    keywords: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -609,6 +610,15 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     old_price: Schema.Attribute.Integer;
     price: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
+    robots: Schema.Attribute.Enumeration<
+      [
+        'index, follow',
+        'noindex, nofollow',
+        'noindex, follow',
+        'index, nofollow',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'index, follow'>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;

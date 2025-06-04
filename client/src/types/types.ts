@@ -125,6 +125,12 @@ export interface WeightVariant {
 	stock: number // поле для отслеживания остатков
 }
 
+export type RobotsMeta =
+	| 'index, follow'
+	| 'noindex, nofollow'
+	| 'noindex, follow'
+	| 'index, nofollow'
+
 export interface Product {
 	id: number
 	documentId: string
@@ -135,6 +141,9 @@ export interface Product {
 	old_price?: number
 	image: ImageProps
 	category: Category
+
+	robots?: RobotsMeta
+	keywords?: string
 
 	weightVariants: WeightVariant[]
 
