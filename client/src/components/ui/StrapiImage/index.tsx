@@ -16,10 +16,9 @@ export function getStrapiMediaURL(path: string = ''): string {
 		return path
 	}
 
-	// Иначе добавляем базовый URL Strapi из env
+	// Используем именно публичную переменную окружения
 	const strapiUrl = process.env.SERVER_URL || 'http://localhost:1337'
 
-	// Добавляем слэш между базовым URL и путем, если нужно
 	return `${strapiUrl}${path.startsWith('/') ? '' : '/'}${path}`
 }
 
