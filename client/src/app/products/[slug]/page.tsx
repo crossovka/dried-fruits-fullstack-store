@@ -1,4 +1,5 @@
 import { getProductBySlug } from '@/data/loaders'
+import { getProducts } from '@/data/loaders'
 import { getBaseUrl } from '@/utils/getBaseUrl'
 
 import { Metadata } from 'next'
@@ -46,4 +47,12 @@ export default async function ProductPageRoute({ params }: { params: Promise<{ s
 	const product = await load(slug)
 
 	return <ProductPage product={product} />
+}
+
+export async function generateStaticParams() {
+	const { items: products } = await getProducts()
+
+	return products.map((product) => ({
+		slug: product.slug,
+	}))
 }

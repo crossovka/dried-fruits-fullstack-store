@@ -24,7 +24,7 @@ export function getStrapiMediaURL(path: string = ''): string {
 
 export function StrapiImage({ src, alt, className, ...rest }: Readonly<StrapiImageProps>) {
 	const imageUrl = getStrapiMediaURL(src)
-	console.log('StrapiImage URL:', imageUrl)
+	// console.log('StrapiImage URL:', imageUrl)
 	if (!imageUrl) return null
 
 	return <Image src={imageUrl} alt={alt} className={className} loading="lazy" {...rest} />

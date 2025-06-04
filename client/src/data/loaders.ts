@@ -90,6 +90,29 @@ export async function getPageBySlug(slug: string) {
 	}
 }
 
+export async function getPages() {
+	const path = '/api/pages'
+	const url = new URL(path, getStrapiURL())
+	url.searchParams.set('pagination[limit]', '100')
+
+	try {
+		const response = await fetchAPI(url.href, {
+			method: 'GET',
+			next: { revalidate: 60 },
+		})
+
+		console.log('[getPages] response:', response)
+
+		return {
+			data: response?.data || [],
+			meta: response?.meta,
+		}
+	} catch (error) {
+		console.error('[getPages] Error:', error)
+		return { data: [], meta: {} }
+	}
+}
+
 const globalSettingQuery = qs.stringify(
 	{
 		populate: {

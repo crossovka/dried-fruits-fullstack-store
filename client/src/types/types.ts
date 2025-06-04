@@ -97,6 +97,31 @@ export interface ProductsProps extends Base<'blocks.products'> {
 	title: string
 	perPage: number
 }
+//========================================================================================================================================================
+export interface Page {
+	id: number
+	documentId: string
+	title: string
+	description: string
+	slug: string
+	createdAt: string // ISO дата
+	updatedAt: string // ISO дата
+	publishedAt: string // ISO дата
+	keywords: string
+	robots: string
+	canonicalUrl: string
+	blocks?: Block[]
+}
+export interface PagesResponse {
+	data: Page[]
+	meta: {
+		pagination: {
+			start: number
+			limit: number
+			total: number
+		}
+	}
+}
 
 //========================================================================================================================================================
 export interface PaginationMeta {
