@@ -4,6 +4,7 @@
 @use '@/sass/base/mixins' as *;
 
 .product-page {
+
 	// .product-page__container
 	&__container {
 		display: flex;
@@ -15,22 +16,55 @@
 	&__wrap {
 		display: flex;
 		gap: 100px;
+
+		@media (max-width:$pc) {
+			gap: 60px;
+		}
+
+		@media (max-width:$tablet) {
+			gap: 20px;
+		}
+
+		@media (max-width:$mobile) {
+			gap: 30px;
+			flex-direction: column;
+		}
 	}
 
 	// .product-page__controls
 	&__controls {
 		display: flex;
 		gap: 40px;
+
+		@media (max-width:$mobile) {
+			flex-direction: column;
+			gap: 16px;
+		}
 	}
 
 	// .product-page__image
 	&__image {
-		flex: 0 0 490px;
-
-		min-height: 500px;
-		max-height: 500px;
 		border-radius: 24px;
 		overflow: hidden;
+
+		@media (min-width:$mobile) {
+			flex: 0 0 490px;
+
+			min-height: 500px;
+			max-height: 500px;
+		}
+
+		@media (max-width:$tablet) {
+			flex: 0 0 490px;
+
+			min-height: 350px;
+			max-height: 500px;
+		}
+
+		@media (max-width:$mobile) {
+			padding-bottom: 65%;
+			width: 100%;
+		}
 	}
 
 	// .product-page__content

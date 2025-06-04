@@ -19,11 +19,13 @@
 	&__btn {
 		flex: 1;
 
-		padding: 15px 45px;
+		padding: 15px 20px;
 		text-wrap: nowrap;
 
 		cursor: pointer;
 		transition: all 0.2s ease;
+
+		font-size: rem(12);
 
 		&:hover:not(:disabled) {
 			background: var(--btn-hover-color);
