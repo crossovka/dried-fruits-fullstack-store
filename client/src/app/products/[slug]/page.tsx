@@ -6,29 +6,31 @@ import { notFound } from 'next/navigation'
 
 import ProductPage from '@/components/pages/product'
 
-interface ProductPageProps {
-	params: { slug: string }
-}
-
 async function load(slug: string) {
+	if (!slug) notFound()
+
 	const product = await getProductBySlug(slug)
 	if (!product) notFound()
+
 	return product
 }
 
+// ❗ Promise<{ slug: string }> — костыль????
 export async function generateMetadata({
 	params,
 }: {
-	params: { slug: string }
+	params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-	const product = await load(params.slug)
+	const { slug } = await params
+
+	const product = await load(slug)
 
 	return {
 		title: product.title || 'Продукт',
 		description: product.description || '',
 		robots: product.robots || 'index, follow',
 		alternates: {
-			canonical: `${getBaseUrl()}/products/${params.slug}`,
+			canonical: `${getBaseUrl()}/products/${slug}`,
 		},
 		other:
 			product.keywords && product.keywords.trim() !== ''
@@ -39,7 +41,9 @@ export async function generateMetadata({
 	}
 }
 
-export default async function Page({ params }: ProductPageProps) {
-	const product = await load(params.slug)
+export default async function ProductPageRoute({ params }: { params: Promise<{ slug: string }> }) {
+	const { slug } = await params
+	const product = await load(slug)
+
 	return <ProductPage product={product} />
 }
