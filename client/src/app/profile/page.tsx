@@ -7,6 +7,9 @@ import { useRouter } from 'next/navigation'
 
 import { useEffect, useState } from 'react'
 
+import { Heading } from '@/components/blocks'
+import { Button } from '@/components/ui'
+
 import { Order } from '@/types/types'
 
 export default function Profile() {
@@ -44,11 +47,13 @@ export default function Profile() {
 		})
 
 	return (
-		<div>
-			<h1>Профиль</h1>
-			<button onClick={handleLogout}>Выйти из аккаунта</button>
+		<div className="__container">
+			<Heading text="Профиль" level="h1" isCentered id={0} />
+			<Button onClick={handleLogout} theme="primary">
+				Выйти из аккаунта
+			</Button>
 
-			<h2>Мои заказы</h2>
+			<Heading text="Мои заказы" level="h2" isCentered id={1} />
 			{loading ? (
 				<p>Загрузка заказов...</p>
 			) : orders.length === 0 ? (

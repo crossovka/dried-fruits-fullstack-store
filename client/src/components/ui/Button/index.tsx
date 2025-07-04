@@ -18,6 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
 	onClick,
 	disabled,
 	className,
+	type = 'button', 
 }) => {
 	if (href) {
 		return (
@@ -45,6 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
 				size && styles[`btn--${size}`],
 				className,
 			)}
+			type={type}
 			onClick={onClick}
 			disabled={disabled}
 		>

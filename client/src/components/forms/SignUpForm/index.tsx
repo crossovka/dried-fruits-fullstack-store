@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { StrapiErrors } from '@/components/strapi-errors'
+import { Button } from '@/components/ui'
 
 type SignUpFormData = {
 	username: string
@@ -111,9 +112,9 @@ const SignUpForm = () => {
 				/>
 			)}
 
-			<button type="submit" className="btn btn--primary" disabled={isLoading}>
+			<Button type="submit" theme="primary" disabled={isLoading}>
 				{isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
-			</button>
+			</Button>
 		</form>
 	)
 }

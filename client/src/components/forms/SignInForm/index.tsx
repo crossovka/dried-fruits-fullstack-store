@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { StrapiErrors } from '@/components/strapi-errors'
+import { Button } from '@/components/ui'
 
 type SignInFormData = {
 	email: string
@@ -90,9 +91,9 @@ const SignInForm = () => {
 				/>
 			)}
 
-			<button type="submit" className="btn btn--primary" disabled={isLoading}>
+			<Button type="submit" theme="primary" disabled={isLoading}>
 				{isLoading ? 'Вход...' : 'Войти'}
-			</button>
+			</Button>
 		</form>
 	)
 }

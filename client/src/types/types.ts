@@ -61,6 +61,7 @@ export interface ButtonProps {
 	onClick?: MouseEventHandler<HTMLButtonElement>
 	disabled?: boolean
 	className?: string
+	type?: 'button' | 'submit' | 'reset'
 }
 
 export interface HeadingProps extends Base<'blocks.heading'> {
