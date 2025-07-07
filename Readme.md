@@ -9,7 +9,7 @@
 ---
 
 https://dried-fruits-fullstack-store.vercel.app/
-https://pleasant-purpose-d574ad195c.strapiapp.com/admin/
+https://shining-love-c0c53e911a.strapiapp.com
 
 ## Контакты
 
