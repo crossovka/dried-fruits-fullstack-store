@@ -7,6 +7,14 @@ import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
 	try {
+		const url = new URL(req.url)
+		const token = url.searchParams.get('token')
+
+		if (token !== process.env.WEBHOOK_TOKEN) {
+			console.error('❌ Неверный токен в webhook')
+			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+		}
+
 		const body = await req.json()
 		console.log('🟡 Webhook body:', JSON.stringify(body, null, 2))
 
@@ -60,22 +68,21 @@ export async function POST(req: Request) {
 
 		console.log('🟢 Ответ Strapi:', res.status)
 
-		// if (!res.ok) {
-		// 	const errorData = await res.json()
-		// 	console.error('❌ Ошибка при обновлении заказа в Strapi:', errorData)
-		// 	return NextResponse.json({ error: 'Ошибка обновления заказа' }, { status: 500 })
-		// }
-
 		if (!res.ok) {
 			const errorText = await res.text()
 			try {
 				const errorJson = JSON.parse(errorText)
-				return NextResponse.json({ error: 'Ошибка обновления заказа', details: errorJson }, { status: 500 })
+				return NextResponse.json(
+					{ error: 'Ошибка обновления заказа', details: errorJson },
+					{ status: 500 },
+				)
 			} catch {
-				return NextResponse.json({ error: 'Ошибка обновления заказа', details: errorText }, { status: 500 })
+				return NextResponse.json(
+					{ error: 'Ошибка обновления заказа', details: errorText },
+					{ status: 500 },
+				)
 			}
 		}
-		
 
 		console.log('✅ Заказ успешно обновлён в Strapi')
 		return NextResponse.json({ success: true })
