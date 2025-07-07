@@ -2,7 +2,6 @@
 // в настройках webhook был указан именно этот публичный URL, то при успешной оплате
 // статус оплаты поменяется в базе Strapi и будет актуален.
 import { getStrapiURL } from '@/utils/get-strapi-url'
-
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
