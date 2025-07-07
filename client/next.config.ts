@@ -5,7 +5,7 @@ const prodStrapiDomain = new URL(process.env.SERVER_URL || 'http://localhost:133
 const nextConfig: NextConfig = {
 	productionBrowserSourceMaps: false,
 	images: {
-		domains: ['localhost', prodStrapiDomain, 'pleasant-purpose-d574ad195c.media.strapiapp.com'],
+		domains: ['localhost', prodStrapiDomain, 'shining-love-c0c53e911a.strapiapp.com'],
 	},
 }
 
