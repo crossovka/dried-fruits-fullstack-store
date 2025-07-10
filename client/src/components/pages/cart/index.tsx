@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 
+import { useUser } from '@/hooks/useUser'
+
 import { Heading } from '@/components/blocks'
 import { Button } from '@/components/ui'
 
@@ -21,6 +23,8 @@ export default function CartPage() {
 		loading,
 	} = useCheckout()
 	const [address, setAddress] = useState('')
+	const { user, loading: userLoading } = useUser()
+	const isDisabled = loading || userLoading || !user
 
 	const handleCheckout = () => placeOrder(address)
 
@@ -47,17 +51,19 @@ export default function CartPage() {
 					<p>Итого: {totalPrice} ₽</p>
 
 					<div className={styles.footer}>
+						{!user && !userLoading && <p style={{ color: 'red' }}>Войдите, чтобы оформить заказ</p>}
+
 						<input
 							type="text"
 							placeholder="Введите адрес доставки"
 							value={address}
 							onChange={(e) => setAddress(e.target.value)}
-							disabled={loading}
 							className={styles.input}
+							disabled={isDisabled}
 						/>
 
 						<div className={styles.actions}>
-							<Button onClick={handleCheckout} disabled={loading} theme="primary" size="medium">
+							<Button onClick={handleCheckout} disabled={isDisabled} theme="primary" size="medium">
 								{loading ? 'Оформление...' : 'Оформить заказ'}
 							</Button>
 

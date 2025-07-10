@@ -11,7 +11,8 @@ export async function GET(req: Request) {
 	}
 
 	// Вызов стандартного эндпоинта Strapi orders (find), кастомный контроллер уже фильтрует по user.id
-	const strapiUrl = getStrapiURL('orders?sort=created:desc')
+	// const strapiUrl = getStrapiURL('orders?sort=created:desc')
+	const strapiUrl = getStrapiURL('orders?sort=created:desc&populate=user')
 
 	const response = await fetch(strapiUrl, {
 		headers: {
@@ -21,7 +22,7 @@ export async function GET(req: Request) {
 
 	const data = await response.json()
 
-	// console.log('🔍 Ответ от Strapi:', JSON.stringify(data, null, 2));
+	console.log('🔍 Ответ от Strapi:', JSON.stringify(data, null, 2));
 
 	return NextResponse.json(data)
 }
